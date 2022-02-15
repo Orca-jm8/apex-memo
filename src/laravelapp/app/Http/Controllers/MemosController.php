@@ -10,4 +10,9 @@ class MemoController extends Controller
     {
         return view('memos.index');
     }
+
+    public function update()
+    {
+        return view('memos.edit');
+    }
 }

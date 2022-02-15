@@ -12,7 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('memos', 'MemoController@index');
+Route::get('memos', 'MemosController@index');
+Route::get('memos_edit', 'MemosController@update');
+
+Route::get('comments', 'CommentsController@index');
+Route::get('comments_edit', 'CommentsController@update');
+
+Route::get('profile_edit', 'ProfileController@index');

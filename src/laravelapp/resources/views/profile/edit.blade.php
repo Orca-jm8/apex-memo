@@ -28,7 +28,7 @@
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <h2>個人メモ一覧ページ</h2>
+                        <h2>プロフィール編集ページ</h2>
                         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
                     </div>
                 </div>
