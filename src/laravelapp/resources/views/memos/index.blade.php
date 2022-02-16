@@ -25,14 +25,24 @@
         </nav>
         <!-- Contact section-->
         <section id="contact">
+            <h1>これはあなたのメモ一覧です</h1>
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
+                    @foreach ($memos as $memo)
                     <div class="col-lg-8">
-                        <h2>個人メモ一覧ページ</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                        <p class="lead">{{$memo->memo}}</p>
+                    </div>
+                    @endforeach
+                    <div class="col-lg-8">
+                        <form action="/memo" method="post">
+                            @csrf
+                            <p>新規メモ作成</p>
+                            <textarea name="memo" cols="50" rows="4" class="w-full rounded-lg border-2 bg-gray-100 @error('comment') border-red-500 @enderror"></textarea>
+                            <input type="submit" value="投稿">
+                        </form>
                     </div>
                 </div>
-            </div>
+            </div>  
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
