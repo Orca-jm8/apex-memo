@@ -24,13 +24,13 @@
             </div>
         </nav>
         <!-- Contact section-->
-        <section id="contact">
+        <section>
             <h1>これはあなたのメモ一覧です</h1>
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     @foreach ($memos as $memo)
                     <div class="col-lg-8">
-                        <p class="lead">{{$memo->memo}}</p>
+                        <p class="lead"><a href="/comment">{{$memo->memo}}</a></p>
                     </div>
                     @endforeach
                     <div class="col-lg-8">
