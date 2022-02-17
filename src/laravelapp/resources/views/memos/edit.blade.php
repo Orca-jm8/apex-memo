@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <title>Apex memos&comments</title>
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -24,12 +24,21 @@
             </div>
         </nav>
         <!-- Contact section-->
-        <section id="contact">
+        <section>
+            <h1>メモ編集画面</h1>
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
-                        <h2>メモ編集ページ</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                        <p class="lead">{{$memo->memo}}</p>
+                    </div>
+                    <div class="col-lg-8">
+                        <form action="{{ route('memo.update', $memo->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <p>メモを編集</p>
+                            <textarea name="memo" value="{{old('memo')}}" cols="50" rows="4" class="w-full rounded-lg border-2 bg-gray-100 @error('comment') border-red-500 @enderror"></textarea>
+                            <input type="submit" value="投稿">
+                        </form>
                     </div>
                 </div>
             </div>

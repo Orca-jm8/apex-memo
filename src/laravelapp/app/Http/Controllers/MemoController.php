@@ -63,9 +63,10 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($memo_id)
     {
-        //
+        $memo = Memo::findOrFail($memo_id);
+        return view('memos.edit', ['memo' => $memo]);
     }
 
     /**
@@ -77,7 +78,15 @@ class MemoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $savedata = [
+            'memo' => $request->memo,
+        ];
+
+        $memo = Memo::findOrFail($id);
+        $memo->user_id = 1;
+        $memo->fill($savedata)->save();
+
+        return redirect('/memo');
     }
 
     /**
@@ -88,6 +97,9 @@ class MemoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $memo = Memo::findOrFail($id);
+        $memo->delete();
+
+        return redirect('/memo');
     }
 }
