@@ -31,6 +31,12 @@
                     @foreach ($memos as $memo)
                     <div class="col-lg-8">
                         <p class="lead"><a href="/comment">{{$memo->memo}}</a></p>
+                        <p><a href="{{ route('memo.edit', $memo->id) }}">編集</a></p>
+                        <form action="{{ route('memo.destroy', $memo->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="削除">
+                        </form>
                     </div>
                     @endforeach
                     <div class="col-lg-8">
