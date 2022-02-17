@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Comment;
 
 class CommentController extends Controller
 {
@@ -13,7 +14,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return view('comments.index');
+        $comments = Comment::all();
+
+        return view('comments.index', ['comments' => $comments]);
     }
 
     /**
@@ -34,7 +37,12 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = new Comment;
+        $comment->memo_id = 1;
+        $form = $request->all();
+        unset($form['_token']);
+        $comment->fill($form)->save();
+        return redirect('/comment');
     }
 
     /**

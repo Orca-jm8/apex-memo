@@ -24,12 +24,22 @@
             </div>
         </nav>
         <!-- Contact section-->
-        <section id="contact">
+        <section>
+            <h1>コメント一覧</h1>
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
+                    @foreach ($comments as $comment)
                     <div class="col-lg-8">
-                        <h2>コメント一覧ページ</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+                        <p class="lead">{{$comment->comment}}</p>
+                    </div>
+                    @endforeach
+                    <div class="col-lg-8">
+                        <form action="/comment" method="post">
+                            @csrf
+                            <p>新規コメント作成</p>
+                            <textarea name="comment" cols="50" rows="4" class="w-full rounded-lg border-2 bg-gray-100 @error('comment') border-red-500 @enderror"></textarea>
+                            <input type="submit" value="投稿">
+                        </form>
                     </div>
                 </div>
             </div>
