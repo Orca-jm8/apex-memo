@@ -16,7 +16,9 @@ class CommentController extends Controller
     {
         $comments = Comment::where('memo_id', $memo_id)->get();
 
-        return view('comments.index', ['comments' => $comments]);
+        $items = ['memo_id' => $memo_id, 'comments' => $comments];
+
+        return view('comments.index', $items);
     }
 
     /**

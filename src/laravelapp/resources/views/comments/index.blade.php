@@ -39,17 +39,14 @@
                         </form>
                     </div>
                     @endforeach
-                    @foreach ($comments as $comment)
                     <div class="col-lg-8">
-                        <form action="{{ route('memo.comment.store', $comment->memo_id) }}" method="post">
+                        <form action="{{ route('memo.comment.store', $memo_id) }}" method="post">
                             @csrf
                             <p>新規コメント作成</p>
                             <textarea name="comment" cols="50" rows="4" class="w-full rounded-lg border-2 bg-gray-100 @error('comment') border-red-500 @enderror"></textarea>
                             <input type="submit" value="投稿">
-                        </form>
-                        @break
+                        </form>                            
                     </div>
-                    @endforeach
                 </div>
             </div>
         </section>
