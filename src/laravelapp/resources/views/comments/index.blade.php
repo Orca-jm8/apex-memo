@@ -31,16 +31,25 @@
                     @foreach ($comments as $comment)
                     <div class="col-lg-8">
                         <p class="lead">{{$comment->comment}}</p>
+                        <p><a href="{{ route('memo.comment.edit', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}">編集</a></p>
+                        <form action="{{ route('memo.comment.destroy', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="削除">
+                        </form>
                     </div>
                     @endforeach
+                    @foreach ($comments as $comment)
                     <div class="col-lg-8">
-                        <form action="/comment" method="post">
+                        <form action="{{ route('memo.comment.store', $comment->memo_id) }}" method="post">
                             @csrf
                             <p>新規コメント作成</p>
                             <textarea name="comment" cols="50" rows="4" class="w-full rounded-lg border-2 bg-gray-100 @error('comment') border-red-500 @enderror"></textarea>
                             <input type="submit" value="投稿">
                         </form>
+                        @break
                     </div>
+                    @endforeach
                 </div>
             </div>
         </section>
