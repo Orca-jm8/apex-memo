@@ -16,4 +16,4 @@ Route::get('/', 'MainController@index');
 Route::get('profile_edit', 'ProfileController@index');
 
 Route::resource('memo', 'MemoController');
-Route::resource('comment', 'CommentController');
+Route::resource('memo.comment', 'CommentController');

@@ -12,9 +12,9 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($memo_id)
     {
-        $comments = Comment::all();
+        $comments = Comment::where('memo_id', $memo_id)->get();
 
         return view('comments.index', ['comments' => $comments]);
     }
@@ -62,9 +62,10 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($comment_id)
     {
-        //
+        $comment = Comment::findOrFail($comment_id);
+        return view('comments.edit', ['comment' => $comment]);
     }
 
     /**
@@ -76,7 +77,14 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $savedata = [
+            'comment' => $request->comment,
+        ];
+
+        $comment = Comment::findOrFail($id);
+        $comment->fill($savedata)->save();
+
+        return redirect('/comment');
     }
 
     /**
@@ -87,6 +95,9 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return redirect('/comment');
     }
 }
