@@ -17,3 +17,6 @@ Route::get('profile_edit', 'ProfileController@index');
 
 Route::resource('memo', 'MemoController');
 Route::resource('memo.comment', 'CommentController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
