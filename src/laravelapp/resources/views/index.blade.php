@@ -16,9 +16,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>
                     </ul>
                 </div>
             </div>
@@ -29,8 +28,18 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <h2>これは一覧ページ</h2>
-                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
                     </div>
+                    @foreach ($memos as $memo)
+                    <div class="col-lg-8">
+                        <p class="lead"><a href="{{ route('memo.comment.index', $memo->id) }}">{{$memo->memo}}</a></p>
+                        <p><a href="{{ route('memo.edit', $memo->id) }}">編集</a></p>
+                        <form action="{{ route('memo.destroy', $memo->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="削除">
+                        </form>
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
