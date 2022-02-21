@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Memo;
 
@@ -15,7 +16,8 @@ class MemoController extends Controller
      */
     public function index()
     {
-        $memos = Memo::all();
+        $user_id = Auth::id();
+        $memos = Memo::where('user_id', $user_id)->get();
 
         return view('memos.index', ['memos' => $memos]);
     }
@@ -39,7 +41,7 @@ class MemoController extends Controller
     public function store(Request $request)
     {
         $memo = new Memo;
-        $memo->user_id = 1;
+        $memo->user_id = Auth::id();
         $form = $request->all();
         unset($form['_token']);
         $memo->fill($form)->save();
@@ -83,7 +85,7 @@ class MemoController extends Controller
         ];
 
         $memo = Memo::findOrFail($id);
-        $memo->user_id = 1;
+        $memo->user_id = Auth::id();
         $memo->fill($savedata)->save();
 
         return redirect('/memo');
