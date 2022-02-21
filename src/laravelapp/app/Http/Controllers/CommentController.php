@@ -37,14 +37,14 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $memo_id)
     {
         $comment = new Comment;
-        $comment->memo_id = 1;
+        $comment->memo_id = $memo_id;
         $form = $request->all();
         unset($form['_token']);
         $comment->fill($form)->save();
-        return redirect('/comment');
+        return redirect(route('memo.comment.index', $comment->memo_id));
     }
 
     /**
@@ -77,16 +77,16 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $comment_id)
     {
         $savedata = [
             'comment' => $request->comment,
         ];
 
-        $comment = Comment::findOrFail($id);
+        $comment = Comment::findOrFail($comment_id);
         $comment->fill($savedata)->save();
 
-        return redirect('/comment');
+        return redirect(route('memo.comment.index', $comment->memo_id));
     }
 
     /**
