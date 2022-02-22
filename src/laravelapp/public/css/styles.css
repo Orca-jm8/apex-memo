@@ -11290,12 +11290,39 @@ html {
   scroll-padding-top: 3.5rem;
 }
 
-section {
+article {
   padding-top: 9rem;
   padding-bottom: 9rem;
+  width: 44%;
 }
 
-section h1 {
-    text-align: center;
-    padding-bottom: 5rem;
+article h1 {
+  text-align: center;
+  padding-bottom: 5rem;
+}
+
+aside {
+  padding-top: 9rem;
+  padding-bottom: 9rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  width: 28%;
+}
+
+.memo-contents {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-position: center center;
+  object-fit: cover;
+}
+
+.profile {
+  text-align: center;
 }
