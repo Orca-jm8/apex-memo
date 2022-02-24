@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Memo;
+use App\ApexRank;
 
 class MemoController extends Controller
 {
@@ -17,9 +18,11 @@ class MemoController extends Controller
     public function index()
     {
         $user_id = Auth::id();
+        $rank_id = Auth::user()->rank_id;
         $memos = Memo::where('user_id', $user_id)->get();
+        $rank = ApexRank::where('id', $rank_id)->first();
 
-        return view('memos.index', ['memos' => $memos]);
+        return view('memos.index', ['memos' => $memos, 'rank' => $rank]);
     }
 
     /**

@@ -14,6 +14,7 @@
 Route::get('/', 'MainController@index');
 
 Route::get('profile_edit', 'ProfileController@index');
+Route::put('profile_edit', 'ProfileController@update');
 
 Route::resource('memo', 'MemoController');
 Route::resource('memo.comment', 'CommentController');

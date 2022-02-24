@@ -27,11 +27,11 @@
     <div class="memo-contents wrapper">
         <aside class="profile">
             <h3>プロフィール</h3>
-            <img src="{{ asset('images/cat.jpg') }}" alt="user icon">
+            <img src="{{ asset(Auth::user()->icon) }}" alt="user icon">
             <p>ユーザーネーム</p>
             <p>{{ Auth::user()->name }}</p>
             <p>ランク</p>
-            <p>{{ Auth::user()->rank_id }}</p>
+            <p>{{ $rank->rank }}</p>
         </aside>
         <article>
             <h1>これはあなたのメモ一覧です</h1>
