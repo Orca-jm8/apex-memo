@@ -7,6 +7,7 @@
     <meta name="description" content="" />
     <title>Apex memos&comments</title>
     <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
     <link href="css/memo.css" rel="stylesheet" />
 </head>
 
@@ -24,58 +25,63 @@
             </div>
         </div>
     </nav>
-    <div class="memo-contents wrapper">
-        <aside class="col-lg-3 profile">
-            <h3>プロフィール</h3>
-            <img src="{{ asset(Auth::user()->icon) }}" alt="user icon">
-            <p>ユーザーネーム</p>
-            <p>{{ Auth::user()->name }}</p>
-            <p>ランク</p>
-            <p>{{ $rank->rank }}</p>
-        </aside>
-        <article class="col-lg-6">
-            <h1>個人メモ一覧</h1>
-            <div class="container px-4">
-                <div class="row gx-4 justify-content-center">
-                    @foreach ($memos as $memo)
-                    <div class="card mb-2">
-                        <div class="card-body">
-                            <p class="lead card-text">{{$memo->memo}}</p>
-                            <p><a href="{{ route('memo.comment.index', $memo->id) }}">コメントを見る</a></p>
-                            <div class="mb-1">
-                                <form action="{{ route('memo.edit', $memo->id) }}" method="GET">
-                                    @csrf
-                                    <input class="btn btn-success" type="submit" value="編集">
-                                </form>
-                            </div>
-                            <div>
-                                <form action="{{ route('memo.destroy', $memo->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input class="btn btn-danger" type="submit" value="削除">
-                                </form>
+    <div class="container py-5 my-5">
+        <div class="row">
+            <aside class="col-lg-3">
+                <div class="profile">
+                    <h3>プロフィール</h3>
+                    <img class="icon" src="{{ asset(Auth::user()->icon) }}" alt="user icon">
+                    <p>ユーザーネーム</p>
+                    <p>{{ Auth::user()->name }}</p>
+                    <p>ランク</p>
+                    <p>{{ $rank->rank }}</p>
+                </div>
+            </aside>
+            <article class="col-lg-6">
+                <h1>個人メモ一覧</h1>
+                <div class="px-4">
+                    <div class="justify-content-center">
+                        @foreach ($memos as $memo)
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <p class="lead card-text">{{$memo->memo}}</p>
+                                <p><a href="{{ route('memo.comment.index', $memo->id) }}">コメントを見る</a></p>
+                                <div class="mb-1">
+                                    <form action="{{ route('memo.edit', $memo->id) }}" method="GET">
+                                        @csrf
+                                        <input class="btn btn-success" type="submit" value="編集">
+                                    </form>
+                                </div>
+                                <div>
+                                    <form action="{{ route('memo.destroy', $memo->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <input class="btn btn-danger" type="submit" value="削除">
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="/memo" method="post">
-                                @csrf
-                                <h4>新規メモ作成</h4>
-                                <div class="form-group mb-1">
-                                    <textarea name="memo" class="form-control"></textarea>
-                                </div>
-                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <input class="btn btn-primary" type="submit" value="投稿">
-                                </div>
-                            </form>
+                        @endforeach
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="/memo" method="POST">
+                                    @csrf
+                                    <h4>新規メモ作成</h4>
+                                    <div class="mb-1">
+                                        <textarea class="form-control" name="memo"></textarea>
+                                    </div>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <input class="btn btn-primary" type="submit" value="投稿">
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </article>
-        <aside class="col-lg-3"></aside>
+            </article>
+            <aside class="col-lg-3">
+            </aside>
+        </div>
     </div>
     <!-- Footer-->
     <footer class="py-5 bg-dark">
