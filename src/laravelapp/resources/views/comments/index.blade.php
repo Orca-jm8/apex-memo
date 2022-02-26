@@ -32,41 +32,44 @@
             </aside>
             <article class="col-lg-6">
                 <h1>コメント一覧</h1>
-                <div class="container px-4">
-                    <div class="row gx-4 justify-content-center">
-                        @foreach ($comments as $comment)
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <p class="lead card-text">{{$comment->comment}}</p>
-                                <div class="mb-1">
-                                    <form action="{{ route('memo.comment.edit', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}">
-                                        @csrf
-                                        <input class="btn btn-success" type="submit" value="編集">
-                                    </form>
-                                </div>
-                                <div>
-                                    <form action="{{ route('memo.comment.destroy', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input class="btn btn-danger" type="submit" value="削除">
-                                    </form>
-                                </div>
-                            </div>
+                <div class="justify-content-center">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p class="lead card-text">{{$memo->memo}}</p>
                         </div>
-                        @endforeach
-                        <div class="card">
-                            <div class="card-body">
-                                <form action="/memo" method="POST">
+                    </div>
+                    @foreach ($comments as $comment)
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <p class="lead card-text">{{$comment->comment}}</p>
+                            <div class="mb-1">
+                                <form action="{{ route('memo.comment.edit', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}">
                                     @csrf
-                                    <h4>新規コメント作成</h4>
-                                    <div class="form-group mb-1">
-                                        <textarea class="form-control" name="memo"></textarea>
-                                    </div>
-                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                        <input class="btn btn-primary" type="submit" value="投稿">
-                                    </div>
+                                    <input class="btn btn-success" type="submit" value="編集">
                                 </form>
                             </div>
+                            <div>
+                                <form action="{{ route('memo.comment.destroy', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-danger" type="submit" value="削除">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="/memo" method="POST">
+                                @csrf
+                                <h4>新規コメント作成</h4>
+                                <div class="form-group mb-1">
+                                    <textarea class="form-control" name="memo"></textarea>
+                                </div>
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <input class="btn btn-primary" type="submit" value="投稿">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -76,7 +79,7 @@
         </div>
     </div>
     <!-- Footer-->
-    <footer class="fixed-bottom py-5 bg-dark">
+    <footer class="py-5 bg-dark">
         <div class="container px-4">
             <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>-->
         </div>

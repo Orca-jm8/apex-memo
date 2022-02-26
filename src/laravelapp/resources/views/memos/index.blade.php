@@ -37,7 +37,9 @@
                     <p>ユーザーネーム</p>
                     <p>{{ $name }}</p>
                     <p>ランク</p>
+                    @if (isset($rank->rank))
                     <p>{{ $rank->rank }}</p>
+                    @endif
                 </div>
             </aside>
             <article class="col-lg-6">
@@ -91,7 +93,7 @@
         </div>
     </div>
     <!-- Footer-->
-    <footer class="fixed-bottom py-5 bg-dark">
+    <footer class="py-5 bg-dark">
         <div class="container px-4">
             <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>-->
         </div>
