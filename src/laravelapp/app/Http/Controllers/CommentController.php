@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\memo;
 use App\Comment;
 
 class CommentController extends Controller
@@ -14,9 +16,10 @@ class CommentController extends Controller
      */
     public function index($memo_id)
     {
+        $memo = Memo::where('id', $memo_id)->first();
         $comments = Comment::where('memo_id', $memo_id)->get();
 
-        $items = ['memo_id' => $memo_id, 'comments' => $comments];
+        $items = ['memo' => $memo, 'comments' => $comments];
 
         return view('comments.index', $items);
     }
@@ -64,10 +67,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($comment_id)
+    public function edit($memo_id, $comment_id)
     {
         $comment = Comment::findOrFail($comment_id);
-        return view('comments.edit', ['comment' => $comment]);
+
+        return view('comments.edit', ['memo_id' => $memo_id, 'comment' => $comment]);
     }
 
     /**
@@ -77,7 +81,7 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $comment_id)
+    public function update(Request $request, $memo_id, $comment_id)
     {
         $savedata = [
             'comment' => $request->comment,
@@ -86,7 +90,7 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($comment_id);
         $comment->fill($savedata)->save();
 
-        return redirect(route('memo.comment.index', $comment->memo_id));
+        return redirect(route('memo.comment.index', $memo_id));
     }
 
     /**
@@ -95,11 +99,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($memo_id, $comment_id)
     {
-        $comment = Comment::findOrFail($id);
+        $comment = Comment::findOrFail($comment_id);
         $comment->delete();
 
-        return redirect('/comment');
+        return redirect(route('memo.comment.index', $memo_id));
     }
 }
