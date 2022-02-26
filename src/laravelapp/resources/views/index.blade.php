@@ -36,8 +36,11 @@
                     <div class="justify-content-center">
                         @foreach ($memos as $memo)
                         <div class="card mb-2">
+                            <div class="card-header">
+                                <a class="nav-link" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
+                            </div>
                             <div class="card-body">
-                                <p class="lead card-text">{{$memo->memo}}</p>
+                                <p class="card-text">{{$memo->memo}}</p>
                                 <p><a href="{{ route('memo.comment.index', $memo->id) }}">コメントを見る</a></p>
                             </div>
                         </div>
@@ -52,7 +55,7 @@
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container px-4">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+            <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>-->
         </div>
     </footer>
     <!-- Bootstrap core JS-->

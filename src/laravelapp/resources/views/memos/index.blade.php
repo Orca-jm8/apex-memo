@@ -7,8 +7,8 @@
     <meta name="description" content="" />
     <title>Apex memos&comments</title>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/memo.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/memo.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
@@ -30,9 +30,12 @@
             <aside class="col-lg-3">
                 <div class="profile">
                     <h3>プロフィール</h3>
-                    <img class="icon" src="{{ asset(Auth::user()->icon) }}" alt="user icon">
+                    @if (Auth::id() === $user_id)
+                    <p><a href="/profile_edit">編集</a></p>
+                    @endif
+                    <img class="icon" src="{{ asset($icon) }}" alt="user icon">
                     <p>ユーザーネーム</p>
-                    <p>{{ Auth::user()->name }}</p>
+                    <p>{{ $name }}</p>
                     <p>ランク</p>
                     <p>{{ $rank->rank }}</p>
                 </div>
@@ -62,6 +65,7 @@
                             </div>
                         </div>
                         @endforeach
+                        @if (Auth::id() === $user_id)
                         <div class="card">
                             <div class="card-body">
                                 <form action="/memo" method="POST">
@@ -76,6 +80,7 @@
                                 </form>
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </article>
@@ -86,7 +91,7 @@
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container px-4">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+            <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>-->
         </div>
     </footer>
     <!-- Bootstrap core JS-->
