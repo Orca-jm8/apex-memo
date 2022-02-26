@@ -49,6 +49,7 @@
                             <div class="card-body">
                                 <p class="lead card-text">{{$memo->memo}}</p>
                                 <p><a href="{{ route('memo.comment.index', $memo->id) }}">コメントを見る</a></p>
+                                @if (Auth::id() === $user_id)
                                 <div class="mb-1">
                                     <form action="{{ route('memo.edit', $memo->id) }}" method="GET">
                                         @csrf
@@ -62,6 +63,7 @@
                                         <input class="btn btn-danger" type="submit" value="削除">
                                     </form>
                                 </div>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -89,7 +91,7 @@
         </div>
     </div>
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="fixed-bottom py-5 bg-dark">
         <div class="container px-4">
             <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>-->
         </div>

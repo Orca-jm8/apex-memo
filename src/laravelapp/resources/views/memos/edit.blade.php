@@ -41,7 +41,7 @@
                                     @method('PUT')
                                     <h4>メモを編集</h4>
                                     <div class="form-group mb-1">
-                                        <textarea class="form-control" name="memo">※編集するメモを表示する</textarea>
+                                        <textarea class="form-control" name="memo">{{ $memo->memo }}</textarea>
                                     </div>
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end"> 
                                         <input class="btn btn-primary" type="submit" value="投稿">
