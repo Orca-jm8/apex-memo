@@ -19,8 +19,12 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $request->file('icon')->store('public/images');
-        $path = $request->file('icon')->hashName();
+        if ($request->file('icon')) {
+            $request->file('icon')->store('public/images');
+            $path = $request->file('icon')->hashName();
+        } else {
+            $path = basename(Auth::user()->icon);
+        }
 
         $user_id = Auth::id();
         $userdata = [

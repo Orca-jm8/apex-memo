@@ -46,7 +46,7 @@
                             @method('PUT')
                             <div class="mb-3">
                                 <label class="form-label" for="name">ユーザーネーム</label>
-                                <input class="form-control" type="text" id="name" name="name">
+                                <input class="form-control" type="text" id="name" name="name" value="{{ Auth::user()->name }}">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="rank">ランク</label>
