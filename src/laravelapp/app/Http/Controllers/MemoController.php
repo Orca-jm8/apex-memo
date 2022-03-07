@@ -51,7 +51,7 @@ class MemoController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $memo->fill($form)->save();
-        return redirect('/memo');
+        return redirect(route('memo.show', $memo->user_id));
     }
 
     /**
@@ -107,7 +107,7 @@ class MemoController extends Controller
         $memo->user_id = Auth::id();
         $memo->fill($savedata)->save();
 
-        return redirect('/memo');
+        return redirect(route('memo.show', $memo->user_id));
     }
 
     /**
@@ -121,6 +121,6 @@ class MemoController extends Controller
         $memo = Memo::findOrFail($id);
         $memo->delete();
 
-        return redirect('/memo');
+        return redirect(route('memo.show', $memo->user_id));
     }
 }
