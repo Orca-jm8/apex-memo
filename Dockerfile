@@ -27,5 +27,5 @@ RUN /bin/sh -c a2enmod rewrite
 COPY /src /var/www/html
 
 #ストレージの権限を変更
-RUN chmod 777 /var/www/html/laravelapp/storage/logs/laravel.log
-RUN chmod -R guo+w /var/www/html/laravelapp/storage
+#RUN chmod 777 /var/www/html/laravelapp/storage/logs/laravel.log
+#RUN chmod -R guo+w /var/www/html/laravelapp/storage
