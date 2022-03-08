@@ -20,7 +20,7 @@ workflows:
             - aws-ecr/build-and-push-image 
           aws-region: AWS_DEFAULT_RESION
           # ECSのタスク定義名
-          family: AWS_ECS_TASK_FAMILY_NAME
+          family: "${AWS_ECS_TASK_FAMILY_NAME}"
           # ECSのサービス名
           service-name: AWS_ECS_SERVICE_NAME
           # ECSのクラスター名
