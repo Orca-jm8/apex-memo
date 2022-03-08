@@ -24,7 +24,7 @@ RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
 RUN /bin/sh -c a2enmod rewrite
 
 #srcディレクトリをコピーする
-COPY /src /var/www/html
+ADD /src /var/www/html
 
 #ストレージの権限を変更
 RUN chmod 777 /var/www/html/laravelapp/storage/logs/laravel.log
