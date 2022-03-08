@@ -22,7 +22,7 @@ workflows:
           # ECSのタスク定義名
           family: "${AWS_ECS_TASK_FAMILY_NAME}"
           # ECSのサービス名
-          service-name: AWS_ECS_SERVICE_NAME
+          service-name: "${AWS_ECS_SERVICE_NAME}"
           # ECSのクラスター名
           cluster-name: "${AWS_ECS_CLUSTER_NAME}"
           # ECSのタスク定義で指定したコンテナ名
