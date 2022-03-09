@@ -27,7 +27,7 @@ RUN /bin/sh -c a2enmod rewrite
 COPY /src /var/www/html
 
 #/vendorディレクトリの生成
-RUN cd /var/www/html/laravelapp && composer install
+RUN cd /var/www/html/laravelapp && composer install --optimize-autoloader --no-dev
 
 #ストレージの権限を変更
 #RUN chmod 777 /var/www/html/laravelapp/storage/logs/laravel.log
