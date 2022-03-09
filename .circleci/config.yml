@@ -33,3 +33,6 @@ workflows:
           filters:
             branches:
               only: master
+          environment:
+            APP_DEBUG: "${APP_DEBUG}"
+            
