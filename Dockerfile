@@ -37,4 +37,3 @@ RUN cd /var/www/html/laravelapp && cp .env.example .env
 RUN cd /var/www/html/laravelapp && php artisan key:generate
 RUN cd /var/www/html/laravelapp && php artisan config:clear
 RUN cd /var/www/html/laravelapp && php artisan config:cache
-RUN cd /var/www/html/laravelapp && php artisan optimize
