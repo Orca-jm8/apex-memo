@@ -32,3 +32,8 @@ RUN cd /var/www/html/laravelapp && composer install --optimize-autoloader --no-d
 #ストレージの権限を変更
 #RUN chmod 777 /var/www/html/laravelapp/storage/logs/laravel.log
 RUN chmod -R guo+w /var/www/html/laravelapp/storage
+
+RUN cd /var/www/html/laravelapp php srtisan key:genarate
+RUN cd /var/www/html/laravelapp php srtisan config:clear
+RUN cd /var/www/html/laravelapp php srtisan config:cache
+RUN cd /var/www/html/laravelapp php srtisan optimize
