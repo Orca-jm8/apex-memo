@@ -14,8 +14,9 @@ workflows:
           repo: "${AWS_ECR_REPO_NAME}"
           region: AWS_DEFAULT_RESION
           tag: "${CIRCLE_SHA1}"
-          branches:
-            only: master
+          filters:
+            branches:
+              only: master
       - aws-ecs/deploy-service-update:
           # このジョブは aws-ecr/build-and-push-image が成功した場合のみ実行されます
           requires:
@@ -29,5 +30,6 @@ workflows:
           cluster-name: "${AWS_ECS_CLUSTER_NAME}"
           # ECSのタスク定義で指定したコンテナ名
           container-image-name-updates: "container=${AWS_ECR_CONTAINER_NAME},tag=${CIRCLE_SHA1}"
-          branches:
-            only: master
+          filters:
+            branches:
+              only: master
