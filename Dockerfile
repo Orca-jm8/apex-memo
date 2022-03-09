@@ -33,7 +33,7 @@ RUN cd /var/www/html/laravelapp && composer install --optimize-autoloader --no-d
 #RUN chmod 777 /var/www/html/laravelapp/storage/logs/laravel.log
 RUN chmod -R guo+w /var/www/html/laravelapp/storage
 
-RUN cd /var/www/html/laravelapp php artisan key:genarate
-RUN cd /var/www/html/laravelapp php artisan config:clear
-RUN cd /var/www/html/laravelapp php artisan config:cache
-RUN cd /var/www/html/laravelapp php artisan optimize
+RUN cd /var/www/html/laravelapp && php artisan key:genarate
+RUN cd /var/www/html/laravelapp && php artisan config:clear
+RUN cd /var/www/html/laravelapp && php artisan config:cache
+RUN cd /var/www/html/laravelapp && php artisan optimize
