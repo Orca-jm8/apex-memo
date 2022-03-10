@@ -14,6 +14,7 @@ jobs:
   lint:
     executor: lint-executor
     steps:
+      - checkout
       - run: curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
       - run: ls
       - run: php phpcs.phar -p --standard=phpcs.xml .
