@@ -7,7 +7,6 @@ orbs:
 jobs:
   lint:
     steps:
-      - checkout
       - run:
           name: Coding rules check
           working_directory: src/laravelapp 
