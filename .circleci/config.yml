@@ -6,11 +6,11 @@ orbs:
 
 jobs:
   lint:
+    working_directory: src/laravelapp
     steps:
       - checkout:
       - run:
           name: Coding rules check
-          working_directory: src/laravelapp 
           command: phpcs --standard=phpcs.xml ./
 
 workflows:
