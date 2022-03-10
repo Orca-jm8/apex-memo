@@ -14,8 +14,7 @@ commands:
 
 jobs:
   lint:
-    steps:
-      - test-static-code-analysis
+    - test-static-code-analysis
 
 workflows:
   build-and-deploy:
