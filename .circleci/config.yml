@@ -12,9 +12,9 @@ commands:
           command: phpcs -p --standard=phpcs.xml ./
 
 jobs:
-  executors:
-    working_directory: ~/portfolio/src/laravel
   lint:
+    executor:
+      working_directory: ~/portfolio/src/laravel
     - test-static-code-analysis
 
 workflows:
