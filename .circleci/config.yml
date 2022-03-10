@@ -5,11 +5,13 @@ orbs:
   aws-ecs: circleci/aws-ecs@2.2.1
 
 jobs:
-  lint:
-    - run:
-        name: Coding rules check
-        working_directory: src/laravelapp
-        command: phpcs --standard=phpcs.xml ./
+  - lint:
+      name: Coding rules check
+      steps:
+        - checkout
+        - run:
+          working_directory: src/laravelapp
+          command: phpcs --standard=phpcs.xml ./
 
 workflows:
   build-and-deploy:
