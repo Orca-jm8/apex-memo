@@ -7,11 +7,11 @@ orbs:
 jobs:
   lint:
     name: Coding rules check
-      steps:
-        - checkout
-        - run:
-            working_directory: src/laravelapp
-            command: phpcs --standard=phpcs.xml ./
+    steps:
+      - checkout
+      - run:
+          working_directory: src/laravelapp 
+          command: phpcs --standard=phpcs.xml ./
 
 workflows:
   build-and-deploy:
