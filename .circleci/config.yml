@@ -7,9 +7,9 @@ orbs:
 jobs:
   lint:
     - run:
-      name: Coding rules check
-      working_directory: src/laravelapp
-      command: phpcs --standard=phpcs.xml ./
+        name: Coding rules check
+        working_directory: src/laravelapp
+        command: phpcs --standard=phpcs.xml ./
 
 workflows:
   build-and-deploy:
