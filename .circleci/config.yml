@@ -10,13 +10,13 @@ jobs:
       steps:
         - checkout
         - run:
-          working_directory: src/laravelapp
-          command: phpcs --standard=phpcs.xml ./
+            working_directory: src/laravelapp
+            command: phpcs --standard=phpcs.xml ./
 
 workflows:
   build-and-deploy:
     jobs:
-      - lint
+      - lint:
       - aws-ecr/build-and-push-image:
           # ECRのURL XXX.dkr.ecr.ap-northeast-1.amazonaws.com
           account-url: AWS_ECR_ACCOUNT_URL
