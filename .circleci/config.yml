@@ -4,21 +4,12 @@ orbs:
   aws-ecr: circleci/aws-ecr@7.3.0
   aws-ecs: circleci/aws-ecs@2.2.1
 
-executors:
-  lint-executor:
-    working_directory: ~/portfolio/src/laravel
-
-commands:
-  test-static-code-analysis:
-    steps:
-      - run:
-          name: Coding rules check
-          command: phpcs -p --standard=phpcs.xml ./
-
 jobs:
   lint:
-    executor: lint-executor
-    - test-static-code-analysis
+    working_directory: ~/portfolio/src/laravel
+    steps:
+      - run:
+          command: phpcs -p --standard=phpcs.xml ./
 
 workflows:
   build-and-deploy:
