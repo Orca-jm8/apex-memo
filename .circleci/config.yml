@@ -4,9 +4,23 @@ orbs:
   aws-ecr: circleci/aws-ecr@7.3.0
   aws-ecs: circleci/aws-ecs@2.2.1
 
+executors:
+  lint-executor:
+    docker:
+      - image: circleci/php:7.3-stretch-node-browsers
+
+jobs:
+  lint:
+    executor: lint-executor
+    steps:
+      - checkout
+      - run: curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+      - run: php phpcs.phar -p --standard=src/laravelapp/phpcs.xml src/laravelapp
+
 workflows:
   build-and-deploy:
     jobs:
+      - lint
       - aws-ecr/build-and-push-image:
           # ECRのURL XXX.dkr.ecr.ap-northeast-1.amazonaws.com
           account-url: AWS_ECR_ACCOUNT_URL
