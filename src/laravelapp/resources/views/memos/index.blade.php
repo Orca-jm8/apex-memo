@@ -33,7 +33,7 @@
                     @if (Auth::id() === $user_id)
                     <p><a href="/profile_edit">編集</a></p>
                     @endif
-                    <img class="icon" src="{{ asset($icon) }}" alt="user icon">
+                    <img class="icon" src="{{ $icon }}" alt="user icon">
                     <p>ユーザーネーム</p>
                     <p>{{ $name }}</p>
                     <p>ランク</p>
