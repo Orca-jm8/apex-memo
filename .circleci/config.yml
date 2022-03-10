@@ -12,6 +12,11 @@ commands:
           working_directory: src/laravel
           command: phpcs -p --standard=phpcs.xml ./
 
+jobs:
+  lint:
+    steps:
+      - test-static-code-analysis
+
 workflows:
   build-and-deploy:
     jobs:
