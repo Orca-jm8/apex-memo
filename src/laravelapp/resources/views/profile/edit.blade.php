@@ -30,7 +30,7 @@
             <aside class="col-lg-3">
                 <div class="profile">
                     <h3>プロフィール</h3>
-                    <img class="icon" src="{{ asset(Auth::user()->icon) }}" alt="user icon">
+                    <img class="icon" src="{{ Auth::user()->icon }}" alt="user icon">
                     <p>ユーザーネーム</p>
                     <p>{{ Auth::user()->name }}</p>
                     <p>ランク</p>

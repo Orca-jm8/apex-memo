@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\User;
 use App\ApexRank;
@@ -19,20 +20,34 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        if ($request->file('icon')) {
-            $request->file('icon')->store('public/images');
-            $path = $request->file('icon')->hashName();
+        if (app()->isLocal()) {
+            if ($request->file('icon')) {
+                $request->file('icon')->store('public/images');
+                $path = $request->file('icon')->hashName();
+            } else {
+                $path = basename(Auth::user()->icon);
+            }
+            $userdata = [
+                'name' => $request->name,
+                'rank_id' => $request->rank_id,
+                'icon' => asset('storage/images/' . $path),
+            ];
         } else {
-            $path = basename(Auth::user()->icon);
+            if ($request->file('icon')) {
+                $image = $request->file('icon');
+                $icon = Storage::disk('s3')->putFile('/icon', $image, 'public');
+                $path = Storage::disk('s3')->url($icon);
+            } else {
+                $path = Auth::user()->icon;
+            }
+            $userdata = [
+                'name' => $request->name,
+                'rank_id' => $request->rank_id,
+                'icon' => $path,
+            ];
         }
 
         $user_id = Auth::id();
-        $userdata = [
-            'name' => $request->name,
-            'rank_id' => $request->rank_id,
-            'icon' => 'storage/images/' . $path,
-        ];
-
         $user = User::findOrFail($user_id);
         $user->fill($userdata)->save();
 
