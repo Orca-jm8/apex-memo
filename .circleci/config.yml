@@ -9,10 +9,11 @@ commands:
     steps:
       - run:
           name: Coding rules check
-          working_directory: ~/portfolio/src/laravel
           command: phpcs -p --standard=phpcs.xml ./
 
 jobs:
+  executors:
+    working_directory: ~/portfolio/src/laravel
   lint:
     - test-static-code-analysis
 
