@@ -34,4 +34,4 @@ RUN cd /var/www/html/laravelapp && composer install --optimize-autoloader --no-d
 RUN chmod -R guo+w /var/www/html/laravelapp/storage
 
 #S3の使用に必要なパッケージのインストール
-RUN cd /var/www/html/laravelapp && composer require league/flysystem-aws-s3-v3 ~1.0
+RUN cd /var/www/html/laravelapp && composer require league/flysystem-aws-s3-v3:^1.0
