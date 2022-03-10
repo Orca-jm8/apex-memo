@@ -4,19 +4,17 @@ orbs:
   aws-ecr: circleci/aws-ecr@7.3.0
   aws-ecs: circleci/aws-ecs@2.2.1
 
-jobs:
-  lint:
-    working_directory: src/laravelapp
+commands:
+  test-static-code-analysis:
     steps:
-      - checkout:
       - run:
           name: Coding rules check
-          command: phpcs --standard=phpcs.xml ./
+          working_directory: src/laravel
+          command: phpcs -p --standard=phpcs.xml ./
 
 workflows:
   build-and-deploy:
     jobs:
-      - lint:
       - aws-ecr/build-and-push-image:
           # ECRのURL XXX.dkr.ecr.ap-northeast-1.amazonaws.com
           account-url: AWS_ECR_ACCOUNT_URL
