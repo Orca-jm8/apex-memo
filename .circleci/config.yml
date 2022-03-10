@@ -6,7 +6,7 @@ orbs:
 
 executors:
   lint-executor:
-    working_directory: src/laravel
+    working_directory: ~/portfolio/src/laravelapp
     docker:
       - image: circleci/php:7.3-stretch-node-browsers
 
