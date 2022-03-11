@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Memo;
 use App\Comment;
@@ -44,6 +45,10 @@ class CommentController extends Controller
     {
         $comment = new Comment;
         $comment->memo_id = $memo_id;
+        $user_id = Auth::id();
+        if (isset($user_id)) {
+            $comment->user_id = $user_id;
+        }
         $form = $request->all();
         unset($form['_token']);
         $comment->fill($form)->save();

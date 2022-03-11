@@ -42,6 +42,7 @@
                     <div class="card mb-2">
                         <div class="card-body">
                             <p class="lead card-text">{{$comment->comment}}</p>
+                            @if (Auth::check() && Auth::id() === $comment->user_id)
                             <div class="mb-1">
                                 <form action="{{ route('memo.comment.edit', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}">
                                     @csrf
@@ -55,16 +56,17 @@
                                     <input class="btn btn-danger" type="submit" value="削除">
                                 </form>
                             </div>
+                            @endif
                         </div>
                     </div>
                     @endforeach
                     <div class="card">
                         <div class="card-body">
-                            <form action="/memo" method="POST">
+                            <form action="{{ route('memo.comment.store', $memo->id) }}" method="POST">
                                 @csrf
                                 <h4>新規コメント作成</h4>
                                 <div class="form-group mb-1">
-                                    <textarea class="form-control" name="memo"></textarea>
+                                    <textarea class="form-control" name="comment"></textarea>
                                 </div>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <input class="btn btn-primary" type="submit" value="投稿">
