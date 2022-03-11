@@ -34,7 +34,9 @@
                     <p>ユーザーネーム</p>
                     <p>{{ Auth::user()->name }}</p>
                     <p>ランク</p>
+                    @if (isset($rank->rank))
                     <p>{{ $rank->rank }}</p>
+                    @endif
                 </div>
             </aside>
             <article class="col-lg-6">
