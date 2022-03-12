@@ -50,7 +50,7 @@
                         <div class="card mb-2">
                             <div class="card-body">
                                 <p class="lead card-text">{{$memo->memo}}</p>
-                                <p><a href="{{ route('memo.comment.index', $memo->id) }}">コメントを見る</a></p>
+                                <p><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></p>
                                 @if (Auth::id() === $user_id)
                                 <div class="mb-1">
                                     <form action="{{ route('memo.edit', $memo->id) }}" method="GET">
