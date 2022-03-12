@@ -41,7 +41,7 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{{$memo->memo}}</p>
-                                <p><a href="{{ route('memo.comment.index', $memo->id) }}">コメントを見る</a></p>
+                                <p><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></p>
                             </div>
                         </div>
                         @endforeach

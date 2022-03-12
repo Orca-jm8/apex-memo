@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Memo;
+use App\Comment;
 use App\User;
 use App\ApexRank;
 
@@ -66,7 +67,13 @@ class MemoController extends Controller
         $rank_id = $user->rank_id;
         $memos = Memo::where('user_id', $user_id)->get();
         $rank = ApexRank::where('id', $rank_id)->first();
-    
+
+        foreach ($memos as $memo) {
+            $count_comments = 0;
+            $count_comments = Comment::where('memo_id', $memo->id)->count();
+            $memo['count_comments'] = $count_comments;
+        }
+        
         $data = [
             'memos' => $memos,
             'user_id' => $user->id,
