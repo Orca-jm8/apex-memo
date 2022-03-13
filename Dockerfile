@@ -15,6 +15,7 @@ git \
 zip \
 unzip \
 vim \
+npm \
 libpng-dev \
 libpq-dev \
 && docker-php-ext-install pdo_mysql
@@ -35,3 +36,6 @@ RUN chmod -R guo+w /var/www/html/laravelapp/storage
 
 #S3の使用に必要なパッケージのインストール
 RUN cd /var/www/html/laravelapp && composer require league/flysystem-aws-s3-v3:^1.0
+
+#Mixの実行
+RUN cd /var/www/html/laravelapp && npm run production
