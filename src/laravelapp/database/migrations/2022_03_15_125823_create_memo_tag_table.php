@@ -15,8 +15,8 @@ class CreateMemoTagTable extends Migration
     {
         Schema::create('memo_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('memo_id');
-            $table->unsignedInteger('tag_id');
+            $table->unsignedBigInteger('memo_id');
+            $table->unsignedBigInteger('tag_id');
             $table->foreign('memo_id')->references('id')->on('memos')->onDelete('cascade');
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
             $table->timestamps();
