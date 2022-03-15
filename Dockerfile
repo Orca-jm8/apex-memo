@@ -38,3 +38,6 @@ RUN cd /var/www/html/laravelapp && composer require league/flysystem-aws-s3-v3:^
 
 #Mixの実行
 RUN cd /var/www/html/laravelapp && apt-get install -y npm && npm install && npm run production
+
+#マイグレーション実行
+RUN cd /var/www/html/laravelapp && php artisan migrate --force
