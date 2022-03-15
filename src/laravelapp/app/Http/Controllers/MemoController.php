@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Memo;
 use App\Comment;
 use App\User;
 use App\ApexRank;
+use App\Tag;
 
 class MemoController extends Controller
 {
@@ -47,11 +49,28 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
+        // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+        preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
+
+        // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+        $tags = [];
+        foreach ($match[1] as $tag) {
+            $record = Tag::firstOrCreate(['tag' => $tag]); // firstOrCreateメソッドで、tags_tableのnameカラムに該当のない$tagは新規登録される。
+            array_push($tags, $record); // $recordを配列に追加します(=$tags)
+        };
+
+        // 投稿に紐付けされるタグのidを配列化
+        $tags_id = [];
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag['id']);
+        };
+
         $memo = new Memo;
         $memo->user_id = Auth::id();
         $form = $request->all();
         unset($form['_token']);
         $memo->fill($form)->save();
+        $memo->tags()->attach($tags_id); // 投稿ににタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
         return redirect(route('memo.show', $memo->user_id));
     }
 
@@ -106,6 +125,22 @@ class MemoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+        preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
+
+        // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+        $tags = [];
+        foreach ($match[1] as $tag) {
+            $record = Tag::firstOrCreate(['tag' => $tag]); // firstOrCreateメソッドで、tags_tableのnameカラムに該当のない$tagは新規登録される。
+            array_push($tags, $record); // $recordを配列に追加します(=$tags)
+        };
+
+        // 投稿に紐付けされるタグのidを配列化
+        $tags_id = [];
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag['id']);
+        };
+
         $savedata = [
             'memo' => $request->memo,
         ];
@@ -113,6 +148,7 @@ class MemoController extends Controller
         $memo = Memo::findOrFail($id);
         $memo->user_id = Auth::id();
         $memo->fill($savedata)->save();
+        $memo->tags()->attach($tags_id); // 投稿ににタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
 
         return redirect(route('memo.show', $memo->user_id));
     }
