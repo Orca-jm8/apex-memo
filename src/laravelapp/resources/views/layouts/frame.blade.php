@@ -9,6 +9,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/memo.css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/footerFixed.js"></script>
 </head>
 
 <body id="page-top">
@@ -29,7 +30,7 @@
 @yield('content')
 
    <!-- Footer-->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark" id="footer">
         <div class="container px-4">
             <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>-->
         </div>
@@ -37,7 +38,7 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="/js/scripts.js"></script>
 </body>
 
 </html>
