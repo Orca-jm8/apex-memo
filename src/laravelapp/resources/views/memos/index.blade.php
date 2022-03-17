@@ -32,7 +32,7 @@
                                     <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
                                     @endforeach
                                 </div>
-                                <p><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></p>
+                                <div><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
                                 @if (Auth::id() === $user_id)
                                 <div class="mb-1">
                                     <form action="{{ route('memo.edit', $memo->id) }}" method="GET">
