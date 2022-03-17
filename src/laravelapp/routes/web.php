@@ -16,6 +16,8 @@ Route::get('/', 'MainController@index');
 Route::get('profile_edit', 'ProfileController@index');
 Route::put('profile_edit', 'ProfileController@update');
 
+Route::get('search', 'SearchController@search');
+
 Route::resource('memo', 'MemoController');
 Route::resource('memo.comment', 'CommentController');
 Auth::routes();

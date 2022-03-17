@@ -16,8 +16,13 @@
                             <a class="nav-link" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">{{$memo->memo}}</p>
-                            <p><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></p>
+                            <div class="card-text">{{$memo->memo}}</div>
+                            <div>
+                                @foreach($memo->tags as $memo_tag)
+                                <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
+                                @endforeach
+                            </div>
+                            <div><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
                         </div>
                     </div>
                     @endforeach
@@ -25,6 +30,19 @@
             </div>
         </article>
         <aside class="col-lg-3">
+            <div class="card center-block">
+                <div class="card-body">
+                    <form action="/search" method="Get">
+                        <div class="mb-2">
+                            <label for="free_word" class="form-label">キーワード検索</label>
+                            <input type="text" class="form-control" name="free_word" id="free_word" value="">
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <input type="submit" class="btn btn-primary" value="検索">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </aside>
     </div>
 </div>
