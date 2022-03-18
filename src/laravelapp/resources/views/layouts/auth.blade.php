@@ -9,6 +9,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/memo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script type="text/javascript" src="/js/footerFixed.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 

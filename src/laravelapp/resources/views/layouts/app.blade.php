@@ -30,9 +30,9 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">Apex memos&comments</a>
+                <a class="navbar-brand" href="{{ url('/') }}">APEX MEMO</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

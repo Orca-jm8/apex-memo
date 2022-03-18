@@ -2,18 +2,18 @@
 
 @section('content')
 <!-- Contact section-->
-<div class="container py-5 my-5">
+<div class="container">
     <div class="row">
         <aside class="col-lg-3">
         </aside>
         <article class="col-lg-6">
-            <h1>一覧ページ</h1>
-            <div class="px-4">
+            <h1 class="text-center">一覧ページ</h1>
+            <div>
                 <div class="justify-content-center">
                     @foreach ($memos as $memo)
                     <div class="card mb-2">
                         <div class="card-header">
-                            <a class="nav-link" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
+                            <a class="text-reset text-decoration-none" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
                         </div>
                         <div class="card-body">
                             <div class="card-text">{{$memo->memo}}</div>
