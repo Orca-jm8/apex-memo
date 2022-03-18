@@ -2,12 +2,12 @@
 
 @section('content')
 <!-- Contact section-->
-<div class="container py-5 my-5">
+<div class="container">
     <div class="row">
         <aside class="col-lg-3">
         </aside>
         <article class="col-lg-6">
-            <h1>コメント一覧</h1>
+            <h1 class="text-center">コメント一覧</h1>
             <div class="justify-content-center">
                 <div class="card mb-2">
                     <div class="card-body">

@@ -1,8 +1,8 @@
 @extends('layouts.frame')
 
 @section('content')
-<<!-- content-->>
-    <div class="container py-5 my-5">
+<!-- content-->
+    <div class="container">
         <div class="row">
             <aside class="col-lg-3">
                 <div class="profile">
@@ -20,7 +20,7 @@
                 </div>
             </aside>
             <article class="col-lg-6">
-                <h1>個人メモ一覧</h1>
+                <h1 class="text-center">個人メモ一覧</h1>
                 <div class="px-4">
                     <div class="justify-content-center">
                         @foreach ($memos as $memo)
