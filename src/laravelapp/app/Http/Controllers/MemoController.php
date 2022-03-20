@@ -90,7 +90,6 @@ class MemoController extends Controller
             'icon' => $user->icon,
             'name' => $user->name,
         ];
-        ddd($data);
 
         return view('memos.index', $data);
     }
