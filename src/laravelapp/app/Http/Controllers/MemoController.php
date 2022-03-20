@@ -21,14 +21,7 @@ class MemoController extends Controller
      */
     public function index()
     {
-        /*
-        $user = User::findOrFail('id', $user_id);
-        $rank_id = $user->rank_id;
-        $memos = Memo::where('user_id', $user_id)->get();
-        $rank = ApexRank::where('id', $rank_id)->first();
-
-        return view('memos.index', ['memos' => $memos, 'rank' => $rank]);
-        */
+        //
     }
 
     /**
@@ -49,17 +42,14 @@ class MemoController extends Controller
      */
     public function store(Request $request)
     {
-        // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
         preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
 
-        // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
         $tags = [];
         foreach ($match[1] as $tag) {
-            $record = Tag::firstOrCreate(['tag' => $tag]); // firstOrCreateメソッドで、tags_tableのnameカラムに該当のない$tagは新規登録される。
-            array_push($tags, $record); // $recordを配列に追加します(=$tags)
+            $record = Tag::firstOrCreate(['tag' => $tag]);
+            array_push($tags, $record);
         };
 
-        // 投稿に紐付けされるタグのidを配列化
         $tags_id = [];
         foreach ($tags as $tag) {
             array_push($tags_id, $tag['id']);
@@ -70,7 +60,7 @@ class MemoController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $memo->fill($form)->save();
-        $memo->tags()->attach($tags_id); // 投稿ににタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
+        $memo->tags()->attach($tags_id);
         return redirect(route('memo.show', $memo->user_id));
     }
 
@@ -80,7 +70,7 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user_id)
+    public function show(int $user_id)
     {
         $user = User::findOrFail($user_id);
         $rank_id = $user->rank_id;
@@ -100,6 +90,7 @@ class MemoController extends Controller
             'icon' => $user->icon,
             'name' => $user->name,
         ];
+        ddd($data);
 
         return view('memos.index', $data);
     }
@@ -110,7 +101,7 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($memo_id)
+    public function edit(int $memo_id)
     {
         $memo = Memo::findOrFail($memo_id);
         return view('memos.edit', ['memo' => $memo]);
@@ -123,19 +114,16 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
         preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
 
-        // $match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
         $tags = [];
         foreach ($match[1] as $tag) {
-            $record = Tag::firstOrCreate(['tag' => $tag]); // firstOrCreateメソッドで、tags_tableのnameカラムに該当のない$tagは新規登録される。
-            array_push($tags, $record); // $recordを配列に追加します(=$tags)
+            $record = Tag::firstOrCreate(['tag' => $tag]);
+            array_push($tags, $record);
         };
 
-        // 投稿に紐付けされるタグのidを配列化
         $tags_id = [];
         foreach ($tags as $tag) {
             array_push($tags_id, $tag['id']);
@@ -148,7 +136,7 @@ class MemoController extends Controller
         $memo = Memo::findOrFail($id);
         $memo->user_id = Auth::id();
         $memo->fill($savedata)->save();
-        $memo->tags()->attach($tags_id); // 投稿ににタグ付するために、attachメソッドをつかい、モデルを結びつけている中間テーブルにレコードを挿入します。
+        $memo->tags()->attach($tags_id);
 
         return redirect(route('memo.show', $memo->user_id));
     }
@@ -159,7 +147,7 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $memo = Memo::findOrFail($id);
         $memo->delete();

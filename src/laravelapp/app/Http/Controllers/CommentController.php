@@ -15,7 +15,7 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($memo_id)
+    public function index(int $memo_id)
     {
         $memo = Memo::where('id', $memo_id)->first();
         $comments = Comment::where('memo_id', $memo_id)->get();
@@ -41,7 +41,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $memo_id)
+    public function store(Request $request, int $memo_id)
     {
         $comment = new Comment;
         $comment->memo_id = $memo_id;
@@ -72,7 +72,7 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($memo_id, $comment_id)
+    public function edit(int $memo_id, int $comment_id)
     {
         $comment = Comment::findOrFail($comment_id);
 
@@ -84,9 +84,9 @@ class CommentController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $memo_id, $comment_id)
+    public function update(Request $request, int $memo_id, int $comment_id)
     {
         $savedata = [
             'comment' => $request->comment,
@@ -102,9 +102,9 @@ class CommentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($memo_id, $comment_id)
+    public function destroy(int $memo_id, int $comment_id)
     {
         $comment = Comment::findOrFail($comment_id);
         $comment->delete();
