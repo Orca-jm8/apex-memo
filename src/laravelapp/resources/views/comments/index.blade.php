@@ -42,7 +42,12 @@
                             @csrf
                             <h4>新規コメント作成</h4>
                             <div class="form-group mb-1">
-                                <textarea class="form-control" name="comment"></textarea>
+                                <textarea class="form-control {{ $errors->has('comment') ? 'is-invalid' : '' }}" value="{{ old('comment') }}" name="comment"></textarea>
+                                @if ($errors->has('comment'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('comment') }}
+                                </div>
+                                @endif
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <input class="btn btn-primary" type="submit" value="投稿">

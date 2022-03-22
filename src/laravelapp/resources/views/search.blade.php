@@ -11,10 +11,14 @@
                 <div class="card-body">
                     <form action="/search" method="Get">
                         <div class="mb-2">
-                            <input type="text" class="form-control" name="free_word" id="free_word" value="{{$parameters->get('free_word')}}">
+                            <input type="text" class="form-control {{ $errors->has('free_word') ? 'is-invalid' : '' }}" name="free_word" id="free_word" value="{{$parameters->get('free_word')}}">
+                            @if ($errors->has('free_word'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('free_word') }}
+                            </div>
+                            @endif
                         </div>
                         <input type="submit" class="btn btn-primary" value="検索">
-                        <a href="/search" class="btn btn-secondary">検索条件クリア</a>
                     </form>
                 </div>
             </div>
@@ -27,7 +31,7 @@
                 @foreach ($memos as $memo)
                 <div class="card mb-2">
                     <div class="card-header">
-                        <a class="nav-link" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
+                        <a class="text-reset text-decoration-none" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
                     </div>
                     <div class="card-body">
                         <div class="card-text">{{$memo->memo}}</div>

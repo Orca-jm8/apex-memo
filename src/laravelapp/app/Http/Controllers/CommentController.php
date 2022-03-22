@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\CommentRequest;
 use App\Memo;
 use App\Comment;
 
@@ -41,7 +42,7 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, int $memo_id)
+    public function store(CommentRequest $request, int $memo_id)
     {
         $comment = new Comment;
         $comment->memo_id = $memo_id;
@@ -86,7 +87,7 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, int $memo_id, int $comment_id)
+    public function update(CommentRequest $request, int $memo_id, int $comment_id)
     {
         $savedata = [
             'comment' => $request->comment,
