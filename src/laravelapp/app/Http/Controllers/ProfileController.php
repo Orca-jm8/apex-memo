@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use App\Http\Requests\ProfileRequest;
 use App\User;
 use App\ApexRank;
 
@@ -18,7 +19,7 @@ class ProfileController extends Controller
         return view('profile.edit', ['rank' => $rank]);
     }
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
         if (app()->isLocal()) {
             if ($request->file('icon')) {

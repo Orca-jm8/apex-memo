@@ -35,7 +35,12 @@
                     <form action="/search" method="Get">
                         <div class="mb-2">
                             <label for="free_word" class="form-label">キーワード検索</label>
-                            <input type="text" class="form-control" name="free_word" id="free_word" value="">
+                            <input type="text" class="form-control {{ $errors->has('free_word') ? 'is-invalid' : '' }}" name="free_word" id="free_word" value="{{ old('free_word') }}">
+                            @if ($errors->has('free_word'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('free_word') }}
+                            </div>
+                            @endif
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <input type="submit" class="btn btn-primary" value="検索">
