@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\MemoRequest;
 use App\Memo;
-use App\Comment;
 use App\User;
 use App\ApexRank;
 use App\Tag;
@@ -75,13 +72,11 @@ class MemoController extends Controller
     {
         $user = User::findOrFail($user_id);
         $rank_id = $user->rank_id;
-        $memos = Memo::where('user_id', $user_id)->get();
+        $memos = Memo::where('user_id', $user_id)->with('comments')->get();
         $rank = ApexRank::where('id', $rank_id)->first();
 
         foreach ($memos as $memo) {
-            $count_comments = 0;
-            $count_comments = Comment::where('memo_id', $memo->id)->count();
-            $memo['count_comments'] = $count_comments;
+            $memo['count_comments'] = $memo->comments->count();
         }
         
         $data = [
@@ -91,7 +86,7 @@ class MemoController extends Controller
             'icon' => $user->icon,
             'name' => $user->name,
         ];
-
+        
         return view('memos.index', $data);
     }
 
