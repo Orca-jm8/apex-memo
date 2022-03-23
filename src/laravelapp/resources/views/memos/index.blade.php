@@ -26,7 +26,7 @@
                     @foreach ($memos as $memo)
                     <div class="card mb-2">
                         <div class="card-body">
-                            <div class="lead card-text">{{$memo->memo}}</div>
+                            <div class="card-text">{{$memo->memo}}</div>
                             <div>
                                 @foreach($memo->tags as $memo_tag)
                                 <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
