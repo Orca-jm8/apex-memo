@@ -39,6 +39,7 @@
                 @foreach ($comments as $comment)
                 <div class="card mb-2 mx-1">
                     <div class="card-body">
+                        <h6 class="card-title">{{ $comment->name }}</h6>
                         <p class="card-text">{{$comment->comment}}</p>
                         @if (Auth::check() && Auth::id() === $comment->user_id)
                         <div class="mb-1">
