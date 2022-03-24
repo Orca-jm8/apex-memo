@@ -27,25 +27,30 @@
                     <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
                     <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>
                     @if (Auth::user())
+                    @if (Auth::user()->icon)
                     <li class="nav-item"><a class="nev-link" href="{{ route('memo.show', Auth::id()) }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
+                    @else
+                    <li class="nav-item"><a class="nev-link" href="{{ route('memo.show', Auth::id()) }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
+                    @endif
 
                     <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @else
+                        <li class="nav-item"><a class="nev-link" href=""><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
                 </ul>
             </div>
@@ -56,7 +61,7 @@
         @yield('content')
     </main>
 
-   <!-- Footer-->
+    <!-- Footer-->
     <footer class="py-5 bg-dark" id="footer">
         <div class="container px-4">
             <!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>-->
