@@ -18,9 +18,17 @@ class CommentController extends Controller
     public function index(int $memo_id)
     {
         $memo = Memo::where('id', $memo_id)->with('user')->first();
-        $comments = Comment::where('memo_id', $memo_id)->get();
+        $comments = Comment::where('memo_id', $memo_id)->with('user')->get();
 
         $memo['name'] = $memo->user->name;
+        
+        foreach ($comments as $comment) {
+            if ($comment->user_id) {
+                $comment['name'] = $comment->user->name;
+            } else {
+                $comment['name'] = 'ゲストユーザー';
+            }
+        }
 
         $items = ['memo' => $memo, 'comments' => $comments];
 
