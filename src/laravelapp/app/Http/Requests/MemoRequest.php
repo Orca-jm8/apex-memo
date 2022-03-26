@@ -25,7 +25,8 @@ class MemoRequest extends FormRequest
     {
         return [
             'memo' => 'required',
-            'tags' => 'regex: /#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u',
+            'tags' => 'nullable|regex: /#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u',
+            'content' => 'file',
         ];
     }
 
@@ -34,6 +35,7 @@ class MemoRequest extends FormRequest
         return [
             'memo.required' => 'メモは必ず入力して下さい。',
             'tags.regex' => 'タグは#〇〇のように入力して下さい。',
+            'content.file' => 'ファイルは画像か動画を選択して下さい。'
         ];
     }
 }

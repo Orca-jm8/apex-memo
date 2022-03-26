@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Memo extends Model
 {
-    protected $fillable = ['memo'];
+    protected $fillable = ['memo', 'content', 'video'];
 
     public function user()
     {

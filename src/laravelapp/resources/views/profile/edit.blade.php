@@ -7,7 +7,11 @@
         <aside class="col-lg-3">
             <div class="profile">
                 <h3>プロフィール</h3>
+                @if (Auth::user()->icon)
                 <img class="icon" src="{{ Auth::user()->icon }}" alt="user icon">
+                @else
+                <img class="icon" src="/images/guest_icon.jpg" alt="user icon">
+                @endif
                 <p>ユーザーネーム</p>
                 <p>{{ Auth::user()->name }}</p>
                 <p>ランク</p>

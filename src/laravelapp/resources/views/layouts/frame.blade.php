@@ -32,7 +32,6 @@
                     @else
                     <li class="nav-item"><a class="nev-link" href="{{ route('memo.show', Auth::id()) }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
-
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -50,7 +49,7 @@
                         </div>
                     </li>
                     @else
-                        <li class="nav-item"><a class="nev-link" href=""><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
+                    <li class="nav-item"><a class="nev-link" href=""><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
                 </ul>
             </div>
