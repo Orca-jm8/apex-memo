@@ -64,32 +64,30 @@ class MemoController extends Controller
             if ($request->file('content')) {
                 $request->file('content')->store('public/images');
                 $path = $request->file('content')->hashName();
-            } else {
-                $path = basename(Auth::user()->icon);
-            }
-            $mime = $request->file('content')->getMimeType();
-            $is_image = explode('/', $mime)[0] == 'image';
-            if ($is_image) {
-                $form['content'] = asset('storage/images/' . $path);
-            } else {
-                $form['video'] = asset('storage/images/' . $path);
-                unset($form['content']);
+
+                $mime = $request->file('content')->getMimeType();
+                $is_image = explode('/', $mime)[0] == 'image';
+                if ($is_image) {
+                    $form['content'] = asset('storage/images/' . $path);
+                } else {
+                    $form['video'] = asset('storage/images/' . $path);
+                    unset($form['content']);
+                }
             }
         } else {
             if ($request->file('content')) {
                 $image = $request->file('content');
                 $icon = Storage::disk('s3')->putFile('/contents', $image, 'public');
                 $path = Storage::disk('s3')->url($icon);
-            } else {
-                $path = Auth::user()->icon;
-            }
-            $mime = $request->file('content')->getMimeType();
-            $is_image = explode('/', $mime)[0] == 'image';
-            if ($is_image) {
-                $form['content'] = $path;
-            } else {
-                $form['video'] = $path;
-                unset($form['content']);
+
+                $mime = $request->file('content')->getMimeType();
+                $is_image = explode('/', $mime)[0] == 'image';
+                if ($is_image) {
+                    $form['content'] = $path;
+                } else {
+                    $form['video'] = $path;
+                    unset($form['content']);
+                }
             }
         }
 
