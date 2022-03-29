@@ -18,8 +18,9 @@ Route::put('profile_edit', 'ProfileController@update');
 
 Route::get('search', 'SearchController@search');
 
-Route::resource('memo', 'MemoController');
-Route::resource('memo.comment', 'CommentController');
+Route::resource('memos', 'MemoController');
+Route::resource('memos.comments', 'CommentController');
+Route::resource('users', 'UserController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -12,7 +12,7 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('memo.update', $memo->id) }}" method="POST">
+                            <form action="{{ route('memos.update', $memo->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <h4>メモを編集</h4>

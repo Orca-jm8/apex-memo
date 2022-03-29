@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
 
 use App\Http\Requests\MemoRequest;
 use App\Memo;
-use App\User;
+use App\Comment;
 use App\ApexRank;
 use App\Tag;
 
@@ -21,7 +20,24 @@ class MemoController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $rank = ApexRank::where('id', $user->rank_id)->first();
+
+        $memos = Memo::where('user_id', $user->id)->with('comments')->get();
+
+        foreach ($memos as $memo) {
+            $memo['count_comments'] = $memo->comments->count();
+        }
+
+        $data = [
+            'memos' => $memos,
+            'user_id' => $user->id,
+            'rank' => $rank,
+            'icon' => $user->icon,
+            'name' => $user->name,
+        ];
+
+        return view('memos.index', $data);
     }
 
     /**
@@ -99,29 +115,27 @@ class MemoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $memo_id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $user_id)
+    public function show(int $memo_id)
     {
-        $user = User::findOrFail($user_id);
-        $rank_id = $user->rank_id;
-        $memos = Memo::where('user_id', $user_id)->with('comments')->get();
-        $rank = ApexRank::where('id', $rank_id)->first();
+        $memo = Memo::where('id', $memo_id)->with('user')->first();
+        $comments = Comment::where('memo_id', $memo_id)->with('user')->get();
 
-        foreach ($memos as $memo) {
-            $memo['count_comments'] = $memo->comments->count();
+        $memo['name'] = $memo->user->name;
+        
+        foreach ($comments as $comment) {
+            if ($comment->user_id) {
+                $comment['name'] = $comment->user->name;
+            } else {
+                $comment['name'] = 'ゲストユーザー';
+            }
         }
 
-        $data = [
-            'memos' => $memos,
-            'user_id' => $user->id,
-            'rank' => $rank,
-            'icon' => $user->icon,
-            'name' => $user->name,
-        ];
+        $items = ['memo' => $memo, 'comments' => $comments];
 
-        return view('memos.index', $data);
+        return view('comments.index', $items);
     }
 
     /**
@@ -143,7 +157,7 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(MemoRequest $request, int $id)
+    public function update(MemoRequest $request, int $memo_id)
     {
         preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
 
@@ -162,12 +176,12 @@ class MemoController extends Controller
             'memo' => $request->memo,
         ];
 
-        $memo = Memo::findOrFail($id);
+        $memo = Memo::findOrFail($memo_id);
         $memo->user_id = Auth::id();
         $memo->fill($savedata)->save();
         $memo->tags()->attach($tags_id);
 
-        return redirect(route('memo.show', $memo->user_id));
+        return redirect(route('memos.index'));
     }
 
     /**
@@ -176,11 +190,11 @@ class MemoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(int $memo_id)
     {
-        $memo = Memo::findOrFail($id);
+        $memo = Memo::findOrFail($memo_id);
         $memo->delete();
 
-        return redirect(route('memo.show', $memo->user_id));
+        return redirect(route('memos.index'));
     }
 }

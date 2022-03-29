@@ -13,7 +13,7 @@
                     @foreach ($memos as $memo)
                     <div class="card mb-2">
                         <div class="card-header">
-                            <a class="text-reset text-decoration-none" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
+                            <a class="text-reset text-decoration-none" href="{{ route('users.show', $memo->user_id) }}">{{$memo->name}}</a>
                         </div>
                         <div class="card-body">
                             <div class="card-text">{{$memo->memo}}</div>
@@ -22,7 +22,7 @@
                                 <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
                                 @endforeach
                             </div>
-                            <div><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
+                            <div><a href="{{ route('memos.show', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
                         </div>
                     </div>
                     @endforeach

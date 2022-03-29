@@ -29,9 +29,9 @@
                     <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>
                     @if (Auth::user())
                     @if (Auth::user()->icon)
-                    <li class="nav-item"><a class="nev-link" href="{{ route('memo.show', Auth::id()) }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
+                    <li class="nav-item"><a class="nev-link" href="{{ route('memos.index') }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
                     @else
-                    <li class="nav-item"><a class="nev-link" href="{{ route('memo.show', Auth::id()) }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
+                    <li class="nav-item"><a class="nev-link" href=""><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
 
                     <li class="nav-item dropdown">

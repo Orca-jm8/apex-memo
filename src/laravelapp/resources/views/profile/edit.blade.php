@@ -24,7 +24,7 @@
             <h1>プロフィール編集</h1>
             <div class="card px-4">
                 <div class="card-body">
-                    <form action="/profile_edit" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('users.update', Auth::id()) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">

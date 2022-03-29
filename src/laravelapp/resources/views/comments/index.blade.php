@@ -11,7 +11,7 @@
             <div class="justify-content-center">
                 <div class="card mb-2">
                     <div class="card-header">
-                        <a class="text-reset text-decoration-none" href="{{ route('memo.show', $memo->user_id) }}">{{$memo->name}}</a>
+                        <a class="text-reset text-decoration-none" href="{{ route('users.show', $memo->user_id) }}">{{$memo->name}}</a>
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{$memo->memo}}</p>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="card mb-2">
                     <div class="card-body">
-                        <form action="{{ route('memo.comment.store', $memo->id) }}" method="POST">
+                        <form action="{{ route('memos.comments.store', $memo->id) }}" method="POST">
                             @csrf
                             <h6 class="card-title">コメントを追加</h6>
                             <div class="form-group mb-1">
@@ -43,13 +43,13 @@
                         <p class="card-text">{{$comment->comment}}</p>
                         @if (Auth::check() && Auth::id() === $comment->user_id)
                         <div class="mb-1">
-                            <form action="{{ route('memo.comment.edit', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}">
+                            <form action="{{ route('memos.comments.edit', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}">
                                 @csrf
                                 <input class="btn btn-success" type="submit" value="編集">
                             </form>
                         </div>
                         <div>
-                            <form action="{{ route('memo.comment.destroy', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}" method="POST">
+                            <form action="{{ route('memos.comments.destroy', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <input class="btn btn-danger" type="submit" value="削除">
