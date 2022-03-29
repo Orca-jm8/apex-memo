@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\CommentRequest;
-use App\Memo;
 use App\Comment;
 
 class CommentController extends Controller
@@ -15,24 +14,9 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $memo_id)
+    public function index()
     {
-        $memo = Memo::where('id', $memo_id)->with('user')->first();
-        $comments = Comment::where('memo_id', $memo_id)->with('user')->get();
-
-        $memo['name'] = $memo->user->name;
-        
-        foreach ($comments as $comment) {
-            if ($comment->user_id) {
-                $comment['name'] = $comment->user->name;
-            } else {
-                $comment['name'] = 'ゲストユーザー';
-            }
-        }
-
-        $items = ['memo' => $memo, 'comments' => $comments];
-
-        return view('comments.index', $items);
+        //
     }
 
     /**
@@ -105,7 +89,7 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($comment_id);
         $comment->fill($savedata)->save();
 
-        return redirect(route('memo.comment.index', $memo_id));
+        return redirect(route('memos.show', $memo_id));
     }
 
     /**
@@ -119,6 +103,6 @@ class CommentController extends Controller
         $comment = Comment::findOrFail($comment_id);
         $comment->delete();
 
-        return redirect(route('memo.comment.index', $memo_id));
+        return redirect(route('memos.show', $memo_id));
     }
 }

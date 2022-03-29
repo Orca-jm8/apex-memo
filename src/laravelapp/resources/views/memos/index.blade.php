@@ -8,7 +8,7 @@
             <div class="profile">
                 <h3>プロフィール</h3>
                 @if (Auth::id() === $user_id)
-                <p><a href="/profile_edit">編集</a></p>
+                <p><a href="{{ route('users.edit', $user_id) }}">編集</a></p>
                 @endif
                 @if ($icon)
                 <img class="icon" src="{{ $icon }}" alt="user icon">
@@ -88,16 +88,16 @@
                         <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
                         @endforeach
                     </div>
-                    <div><a href="{{ route('memo.comment.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
+                    <div><a href="{{ route('memos.comments.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
                     @if (Auth::id() === $user_id)
                     <div class="mb-1">
-                        <form action="{{ route('memo.edit', $memo->id) }}" method="GET">
+                        <form action="{{ route('memos.edit', $memo->id) }}" method="GET">
                             @csrf
                             <input class="btn btn-success" type="submit" value="編集">
                         </form>
                     </div>
                     <div>
-                        <form action="{{ route('memo.destroy', $memo->id) }}" method="POST">
+                        <form action="{{ route('memos.destroy', $memo->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input class="btn btn-danger" type="submit" value="削除">

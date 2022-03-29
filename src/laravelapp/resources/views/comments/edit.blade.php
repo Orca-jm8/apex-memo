@@ -12,7 +12,7 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('memo.comment.update', ['memo' => $memo_id, 'comment' => $comment->id]) }}" method="POST">
+                            <form action="{{ route('memos.comments.update', ['memo' => $memo_id, 'comment' => $comment->id]) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <h4>コメントを編集</h4>
