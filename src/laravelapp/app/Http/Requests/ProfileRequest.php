@@ -25,7 +25,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'rank_id' => 'numeric',
+            'rank_id' => 'numeric|between:1,22',
             'icon' => 'image',
         ];
     }

@@ -26,7 +26,7 @@ class MemoRequest extends FormRequest
         return [
             'memo' => 'required',
             'tags' => 'nullable|regex: /#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u',
-            'content' => 'file',
+            'content' => 'file|mimes:jpeg,bmp,png,mp4,qt,x-ms-wmv,mpeg,x-msvideo',
         ];
     }
 

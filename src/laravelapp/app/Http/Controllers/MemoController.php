@@ -109,7 +109,7 @@ class MemoController extends Controller
 
         $memo->fill($form)->save();
         $memo->tags()->attach($tags_id);
-        return redirect(route('memo.show', $memo->user_id));
+        return redirect(route('memos.index'));
     }
 
     /**
