@@ -24,10 +24,11 @@
             </div>
         </aside>
         <article class="col-lg-6">
+            <h1 class="text-center">個人メモ一覧</h1>
             @if (Auth::id() === $user_id)
             <div class="card mb-2">
                 <div class="card-body">
-                    <form action="/memo" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('memos.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <h4>新規メモ作成</h4>
                         <div class="mb-1">
@@ -68,44 +69,6 @@
                 </div>
             </div>
             @endif
-            @foreach ($memos as $memo)
-            <div class="card mb-2">
-                <div class="card-body">
-                    <div class="card-text">{{$memo->memo}}</div>
-                    @if ($memo->content)
-                    <figure class="figure">
-                        <img src="{{ $memo->content }}" class="figure-img img-fluid rounded" alt="...">
-                    </figure>
-                    @endif
-                    @if ($memo->video)
-                    <div class="ratio ratio-4x3">
-                        <video src="{{ $memo->video }}" controls></video>
-                    </div>
-                    @endif
-                    <div>
-                        @foreach($memo->tags as $memo_tag)
-                        <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
-                        @endforeach
-                    </div>
-                    <div><a href="{{ route('memos.comments.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
-                    @if (Auth::id() === $user_id)
-                    <div class="mb-1">
-                        <form action="{{ route('memos.edit', $memo->id) }}" method="GET">
-                            @csrf
-                            <input class="btn btn-outline-primary btn-sm" type="submit" value="編集">
-                        </form>
-                    </div>
-                    <div>
-                        <form action="{{ route('memos.destroy', $memo->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input class="btn btn-outline-danger btn-sm" type="submit" value="削除">
-                        </form>
-                    </div>
-                    @endif
-                </div>
-            </div>
-            @endforeach
         </article>
         <aside class="col-lg-3">
         </aside>

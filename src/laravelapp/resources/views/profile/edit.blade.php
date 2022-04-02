@@ -21,7 +21,6 @@
             </div>
         </aside>
         <article class="col-lg-6">
-            <h1>プロフィール編集</h1>
             <div class="card px-4">
                 <div class="card-body">
                     <form action="{{ route('users.update', Auth::id()) }}" method="POST" enctype="multipart/form-data">

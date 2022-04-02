@@ -47,7 +47,17 @@ class MemoController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $rank = ApexRank::where('id', $user->rank_id)->first();
+
+        $data = [
+            'user_id' => $user->id,
+            'rank' => $rank,
+            'icon' => $user->icon,
+            'name' => $user->name,
+        ];
+
+        return view('memos.create', $data);
     }
 
     /**
