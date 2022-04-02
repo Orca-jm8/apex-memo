@@ -7,7 +7,6 @@
         <aside class="col-lg-3">
         </aside>
         <article class="col-lg-6">
-            <h1 class="text-center">一覧ページ</h1>
             <div>
                 <div class="justify-content-center">
                     @foreach ($memos as $memo)

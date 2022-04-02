@@ -7,7 +7,6 @@
         <aside class="col-lg-3">
         </aside>
         <article class="col-lg-6">
-            <h1 class="text-center">コメント編集画面</h1>
             <div class="container px-4">
                 <div class="row gx-4 justify-content-center">
                     <div class="card">
