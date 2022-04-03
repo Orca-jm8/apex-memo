@@ -7,9 +7,9 @@
     <meta name="description" content="" />
     <title>APEX MEMO</title>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/memo.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="/css/styles.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/footerFixed.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -35,7 +35,7 @@
                     @if (Auth::user()->icon)
                     <li class="nav-item"><a class="nev-link" href="{{ route('memos.index') }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
                     @else
-                    <li class="nav-item"><a class="nev-link" href="{{ route('/') }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
+                    <li class="nav-item"><a class="nev-link" href="/login"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
 
                     <li class="nav-item dropdown">
