@@ -18,7 +18,7 @@
                             <div class="card-text">{{$memo->memo}}</div>
                             <div>
                                 @foreach($memo->tags as $memo_tag)
-                                <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
+                                <span class="badge rounded-pill bg-primary"><a class="text-reset text-decoration-none" href="/hashtag/{{$memo_tag->tag}}">{{ $memo_tag->tag }}</a></span>
                                 @endforeach
                             </div>
                             <div><a href="{{ route('memos.show', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>

@@ -24,50 +24,6 @@
             </div>
         </aside>
         <article class="col-lg-6">
-            @if (Auth::id() === $user_id)
-            <div class="card mb-2">
-                <div class="card-body">
-                    <form action="/memo" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <h4>新規メモ作成</h4>
-                        <div class="mb-1">
-                            <textarea class="form-control {{ $errors->has('memo') ? 'is-invalid' : '' }}" value="{{ old('memo') }}" name="memo"></textarea>
-                            @if ($errors->has('memo'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('memo') }}
-                            </div>
-                            @endif
-                        </div>
-
-                        <div class="form-group mb-1">
-                            <label for="tags">
-                                タグ
-                            </label>
-                            <input id="tags" name="tags" class="form-control {{ $errors->has('tags') ? 'is-invalid' : '' }}" value="{{ old('tags') }}" type="text">
-                            @if ($errors->has('tags'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('tags') }}
-                            </div>
-                            @endif
-                        </div>
-
-                        <div class="mb-2">
-                            <label for="formfile">画像と動画</label>
-                            <input class="form-control {{ $errors->has('icon') ? 'is-invalid' : '' }}" name="content" type="file" id="formfile" accept="image/*">
-                            @if ($errors->has('icon'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('icon') }}
-                            </div>
-                            @endif
-                        </div>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <input class="btn btn-primary" type="submit" value="投稿">
-                        </div>
-                    </form>
-                </div>
-            </div>
-            @endif
             @foreach ($memos as $memo)
             <div class="card mb-2">
                 <div class="card-body">
@@ -84,7 +40,7 @@
                     @endif
                     <div>
                         @foreach($memo->tags as $memo_tag)
-                        <span class="badge rounded-pill bg-primary">{{ $memo_tag->tag }}</span>
+                        <span class="badge rounded-pill bg-primary"><a class="text-reset text-decoration-none" href="/hashtag/{{$memo_tag->tag}}">{{ $memo_tag->tag }}</a></span>
                         @endforeach
                     </div>
                     <div><a href="{{ route('memos.comments.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>

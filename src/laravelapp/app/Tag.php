@@ -8,7 +8,7 @@ class Tag extends Model
 {
     protected $fillable = ['tag'];
     
-    public function posts()
+    public function memos()
     {
         return $this->belongsToMany('App\Memo');
     }
