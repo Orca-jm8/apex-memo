@@ -14,6 +14,7 @@
 Route::get('/', 'MainController@index');
 
 Route::get('search', 'SearchController@search');
+Route::get('hashtag/{hashtag}', 'HashtagController@show');
 
 Route::resource('memos', 'MemoController');
 Route::resource('memos.comments', 'CommentController');
