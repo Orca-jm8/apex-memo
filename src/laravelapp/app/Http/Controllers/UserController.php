@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         $rank = ApexRank::where('id', $user->rank_id)->first();
 
-        $memos = Memo::where('user_id', $user->id)->with('comments')->get();
+        $memos = Memo::where('user_id', $user->id)->with('comments')->paginate(10);
 
         foreach ($memos as $memo) {
             $memo['count_comments'] = $memo->comments->count();
