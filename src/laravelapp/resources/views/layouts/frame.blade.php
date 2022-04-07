@@ -10,7 +10,31 @@
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/memo.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/footerFixed.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/jquery.infinitescroll.min.js"></script>
+
+    <script type="text/javascript">
+        var pageCount = {{ $memos->lastPage() }};
+        var nowPage = 1;
+        $(function(){
+            $('.result_memos').infinitescroll({
+                navSelector: ".more",
+                nextSelector: ".more a",
+                itemSelector: ".info",
+            },
+            function(newElements) {
+                $("#infscr-loading").remove();
+                if (nowPage < pageCount) {
+                    $(".more").appendTo(".result_memos");
+                    $(".more").css({
+                        display: 'block'
+                    });
+                }
+                nowPage++;
+            });
+        });
+        
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
