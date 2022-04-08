@@ -7,11 +7,34 @@
     <meta name="description" content="" />
     <title>APEX MEMO</title>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/memo.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/memo.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/footerFixed.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/jquery.infinitescroll.min.js"></script>
+
+    <script type="text/javascript">
+        var pageCount = {{ $memos->lastPage() }};
+        var nowPage = 1;
+        $(function(){
+            $('.result_memos').infinitescroll({
+                navSelector: ".more",
+                nextSelector: ".more a",
+                itemSelector: ".info",
+            },
+            function(newElements) {
+                $("#infscr-loading").remove();
+                if (nowPage < pageCount) {
+                    $(".more").appendTo(".result_memos");
+                    $(".more").css({
+                        display: 'block'
+                    });
+                }
+                nowPage++;
+            });
+        });
+        
+    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -37,13 +60,13 @@
                     @else
                     <li class="nav-item"><a href="{{ route('memos.index') }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
-
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('memos.index') }}">マイページ</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
