@@ -11,30 +11,6 @@
     <link href="/css/memo.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/footerFixed.js"></script>
     <script src="/js/app.js"></script>
-    <script src="/js/jquery.infinitescroll.min.js"></script>
-
-    <script type="text/javascript">
-        var pageCount = {{ $memos->lastPage() }};
-        var nowPage = 1;
-        $(function(){
-            $('.result_memos').infinitescroll({
-                navSelector: ".more",
-                nextSelector: ".more a",
-                itemSelector: ".info",
-            },
-            function(newElements) {
-                $("#infscr-loading").remove();
-                if (nowPage < pageCount) {
-                    $(".more").appendTo(".result_memos");
-                    $(".more").css({
-                        display: 'block'
-                    });
-                }
-                nowPage++;
-            });
-        });
-        
-    </script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -51,14 +27,14 @@
                     @if (Auth::user())
                     <li class="nav-item"><a class="btn btn-danger mx-2" href="{{ route('memos.create') }}">投稿</a></li>
                     @else
-                    <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>
+                    <li class="nav-item"><a href="/login">ログイン</a></li>
+                    <li class="nav-item"><a href="/register">新規登録</a></li>
                     @endif
                     @if (Auth::user())
                     @if (Auth::user()->icon)
-                    <li class="nav-item"><a class="nev-link" href="{{ route('memos.index') }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('memos.index') }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
                     @else
-                    <li class="nav-item"><a class="nev-link" href="/login"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('memos.index') }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -66,7 +42,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('memos.index') }}">マイページ</a>
+                            <a class="dropdown-item" href="{{ route('memos.index') }}">マイページ</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -78,7 +54,7 @@
                         </div>
                     </li>
                     @else
-                    <li class="nav-item"><a class="nev-link" href=""><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
+                    <li class="nav-item"><a href="/login"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
                 </ul>
             </div>

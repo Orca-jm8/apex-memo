@@ -1,4 +1,4 @@
-@extends('layouts.frame')
+@extends('layouts.memos')
 
 @section('content')
 <!-- content-->
