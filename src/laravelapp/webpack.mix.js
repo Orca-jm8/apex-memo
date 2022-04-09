@@ -15,4 +15,5 @@ mix.js([
    'resources/js/app.js',
    'resources/js/jquery-3.6.0.min.js',
    ], 'public/js')
+   .copy('resources/js/readmore.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');

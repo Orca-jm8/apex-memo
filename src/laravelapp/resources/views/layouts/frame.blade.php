@@ -11,6 +11,7 @@
     <link href="/css/memo.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/footerFixed.js"></script>
     <script src="/js/app.js"></script>
+    <script src="/js/countDown.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -32,9 +33,9 @@
                     @endif
                     @if (Auth::user())
                     @if (Auth::user()->icon)
-                    <li class="nav-item"><a class="nav-link" href="{{ route('memos.index') }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
+                    <li class="nav-item"><a href="{{ route('memos.index') }}"><img class="top-icon" src="{{ Auth::user()->icon }}" alt="user icon"></a></li>
                     @else
-                    <li class="nav-item"><a class="nav-link" href="{{ route('memos.index') }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
+                    <li class="nav-item"><a href="{{ route('memos.index') }}"><img class="top-icon" src="/images/guest_icon.jpg" alt="user icon"></a></li>
                     @endif
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

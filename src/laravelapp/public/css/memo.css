@@ -17,3 +17,12 @@
 .profile {
     text-align: center;
 }
+
+.text {
+    line-height: 24px;
+}
+
+.readmore-btn {
+    text-align: right;
+    display: none;
+}
