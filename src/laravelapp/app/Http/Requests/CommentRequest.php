@@ -24,7 +24,7 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => 'required',
+            'comment' => 'required|max:2000',
         ];
     }
 
@@ -32,6 +32,7 @@ class CommentRequest extends FormRequest
     {
         return [
             'comment.required' => 'コメントは必ず入力して下さい。',
+            'comment.max' => 'コメントは2000文字以下にして下さい。',
         ];
     }
 }

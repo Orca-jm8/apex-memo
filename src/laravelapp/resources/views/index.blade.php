@@ -15,7 +15,9 @@
                         <a class="text-reset text-decoration-none" href="{{ route('users.show', $memo->user_id) }}">{{$memo->name}}</a>
                     </div>
                     <div class="card-body">
-                        <div class="card-text">{{$memo->memo}}</div>
+                        <div class="card-text text">{{ $memo->memo }}</div>
+                        <p class="readmore-btn"><a href="">続きを読む</a></p>
+
                         <div>
                             @foreach($memo->tags as $memo_tag)
                             <span class="badge rounded-pill bg-primary"><a class="text-reset text-decoration-none" href="/hashtag/{{$memo_tag->tag}}">{{ $memo_tag->tag }}</a></span>

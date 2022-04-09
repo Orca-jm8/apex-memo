@@ -32,7 +32,9 @@
                         @csrf
                         <h4>新規メモ作成</h4>
                         <div class="mb-1">
-                            <textarea class="form-control {{ $errors->has('memo') ? 'is-invalid' : '' }}" value="{{ old('memo') }}" name="memo"></textarea>
+                            <textarea class="form-control {{ $errors->has('memo') ? 'is-invalid' : '' }}" value="{{ old('memo') }}" name="memo" onkeyup="CountDownLength( 'cdlength1' , value , 2000 );"></textarea>
+                            <p id="cdlength1">あと2000文字</p>
+
                             @if ($errors->has('memo'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('memo') }}

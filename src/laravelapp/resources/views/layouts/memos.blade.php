@@ -12,6 +12,7 @@
     <script type="text/javascript" src="/js/footerFixed.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/jquery.infinitescroll.min.js"></script>
+    <!--<script src="{{ mix('js/readmore.js') }}" defer></script>-->
 
     <script type="text/javascript">
         var pageCount = {{ $memos->lastPage() }};
