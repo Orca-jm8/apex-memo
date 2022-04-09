@@ -39,8 +39,7 @@
                 <div class="card-body">
                     <form action="/search" method="Get">
                         <div class="mb-2">
-                            <label for="free_word" class="form-label">キーワード検索</label>
-                            <input type="text" class="form-control {{ $errors->has('free_word') ? 'is-invalid' : '' }}" name="free_word" id="free_word" value="{{ old('free_word') }}">
+                            <input type="text" class="form-control {{ $errors->has('free_word') ? 'is-invalid' : '' }}" name="free_word" id="free_word" value="{{ old('free_word') }}" placeholder="キーワード検索">
                             @if ($errors->has('free_word'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('free_word') }}

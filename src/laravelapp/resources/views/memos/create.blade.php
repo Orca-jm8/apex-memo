@@ -32,7 +32,7 @@
                         @csrf
                         <h4>新規メモ作成</h4>
                         <div class="mb-1">
-                            <textarea class="form-control {{ $errors->has('memo') ? 'is-invalid' : '' }}" value="{{ old('memo') }}" name="memo" onkeyup="CountDownLength( 'cdlength1' , value , 2000 );"></textarea>
+                            <textarea class="form-control {{ $errors->has('memo') ? 'is-invalid' : '' }}" value="{{ old('memo') }}" name="memo" placeholder="メモを入力" onkeyup="CountDownLength( 'cdlength1' , value , 2000 );"></textarea>
                             <p id="cdlength1">あと2000文字</p>
 
                             @if ($errors->has('memo'))
@@ -46,7 +46,7 @@
                             <label for="tags">
                                 タグ
                             </label>
-                            <input id="tags" name="tags" class="form-control {{ $errors->has('tags') ? 'is-invalid' : '' }}" value="{{ old('tags') }}" type="text">
+                            <input id="tags" name="tags" class="form-control {{ $errors->has('tags') ? 'is-invalid' : '' }}" value="{{ old('tags') }}" type="text" placeholder="#tag1 #tag2...">
                             @if ($errors->has('tags'))
                             <div class="invalid-feedback">
                                 {{ $errors->first('tags') }}
