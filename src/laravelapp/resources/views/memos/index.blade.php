@@ -46,18 +46,20 @@
                         </div>
                         <div><a href="{{ route('memos.comments.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
                         @if (Auth::id() === $user_id)
-                        <div class="mb-1">
-                            <form action="{{ route('memos.edit', $memo->id) }}" method="GET">
-                                @csrf
-                                <input class="btn btn-outline-primary btn-sm" type="submit" value="編集">
-                            </form>
-                        </div>
-                        <div>
-                            <form action="{{ route('memos.destroy', $memo->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input class="btn btn-outline-danger btn-sm" type="submit" value="削除">
-                            </form>
+                        <div class="ud-btn">
+                            <div class="me-1">
+                                <form action="{{ route('memos.edit', $memo->id) }}" method="GET">
+                                    @csrf
+                                    <input class="btn btn-outline-primary btn-sm" type="submit" value="編集">
+                                </form>
+                            </div>
+                            <div>
+                                <form action="{{ route('memos.destroy', $memo->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-outline-danger btn-sm" type="submit" value="削除">
+                                </form>
+                            </div>
                         </div>
                         @endif
                     </div>
@@ -67,7 +69,7 @@
                 @if ($memos->hasMorePages())
                 <p class="button more"><a href="{{ $memos->nextPageUrl() }}">もっと見る</a></p>
                 @endif
-                
+
             </div>
         </article>
         <aside class="col-lg-3">
