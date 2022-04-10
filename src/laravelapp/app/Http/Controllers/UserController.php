@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 use App\User;
 use App\ApexRank;
 use App\Memo;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\ProfileRequest;
 
 class UserController extends Controller
