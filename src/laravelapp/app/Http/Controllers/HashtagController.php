@@ -7,6 +7,17 @@ use App\Tag;
 
 class HashtagController extends Controller
 {
+    public function index()
+    {
+        $tags = Tag::with('memos')->get();
+        
+        foreach ($tags as $tag) {
+            $tag['count_memos'] = $tag->memos->count();
+        }
+
+        return view('hashtag.index', ['tags' => $tags]);
+    }
+
     public function show(string $hashtag)
     {
         $tag = Tag::where('tag', '=', $hashtag)
@@ -19,6 +30,6 @@ class HashtagController extends Controller
             $memo['count_comments'] = $memo->comments->count();
         }
 
-        return view('hashtag.index', ['memos' => $memos]);
+        return view('hashtag.show', ['memos' => $memos]);
     }
 }
