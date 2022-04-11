@@ -30,3 +30,21 @@
 .ud-btn {
     display: flex;
 }
+
+.p-hashtag {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 48px 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.p-hashtag_item {
+    width: calc(33% - 8px);
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}

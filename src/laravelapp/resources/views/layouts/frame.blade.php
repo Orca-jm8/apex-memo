@@ -28,8 +28,8 @@
                     @if (Auth::user())
                     <li class="nav-item"><a class="btn btn-danger mx-2" href="{{ route('memos.create') }}">投稿</a></li>
                     @else
-                    <li class="nav-item"><a href="/login">ログイン</a></li>
-                    <li class="nav-item"><a href="/register">新規登録</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">ログイン</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">新規登録</a></li>
                     @endif
                     @if (Auth::user())
                     @if (Auth::user()->icon)
