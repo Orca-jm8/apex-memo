@@ -20,6 +20,10 @@ class MemoController extends Controller
      */
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $user = Auth::user();
         $rank = ApexRank::where('id', $user->rank_id)->first();
 
