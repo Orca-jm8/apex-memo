@@ -13,6 +13,10 @@
 
 Route::get('/', 'MainController@index');
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::get('search', 'SearchController@search');
 Route::get('hashtag', 'HashtagController@index');
 Route::get('hashtag/{hashtag}', 'HashtagController@show');

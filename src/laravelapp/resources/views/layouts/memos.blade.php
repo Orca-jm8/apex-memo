@@ -15,26 +15,29 @@
     <!--<script src="{{ mix('js/readmore.js') }}" defer></script>-->
 
     <script type="text/javascript">
-        var pageCount = {{ $memos->lastPage() }};
+        var pageCount = {
+            {
+                $memos - > lastPage()
+            }
+        };
         var nowPage = 1;
-        $(function(){
+        $(function() {
             $('.result_memos').infinitescroll({
-                navSelector: ".more",
-                nextSelector: ".more a",
-                itemSelector: ".info",
-            },
-            function(newElements) {
-                $("#infscr-loading").remove();
-                if (nowPage < pageCount) {
-                    $(".more").appendTo(".result_memos");
-                    $(".more").css({
-                        display: 'block'
-                    });
-                }
-                nowPage++;
-            });
+                    navSelector: ".more",
+                    nextSelector: ".more a",
+                    itemSelector: ".info",
+                },
+                function(newElements) {
+                    $("#infscr-loading").remove();
+                    if (nowPage < pageCount) {
+                        $(".more").appendTo(".result_memos");
+                        $(".more").css({
+                            display: 'block'
+                        });
+                    }
+                    nowPage++;
+                });
         });
-        
     </script>
 
     <!-- Fonts -->
@@ -48,6 +51,14 @@
         <div class="container">
             <a class="navbar-brand" href="/">APEX MEMO</a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">APEX MEMOとは</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/hashtag">さがす</a>
+                    </li>
+                </ul>
                 <ul class="navbar-nav ms-auto">
                     @if (Auth::user())
                     <li class="nav-item"><a class="btn btn-danger mx-2" href="{{ route('memos.create') }}">投稿</a></li>
@@ -67,7 +78,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('memos.index') }}">マイページ</a>
+                            <a class="dropdown-item" href="{{ route('memos.index') }}">マイページ</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}

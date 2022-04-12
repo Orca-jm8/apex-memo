@@ -24,6 +24,14 @@
         <div class="container">
             <a class="navbar-brand" href="/">APEX MEMO</a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">APEX MEMOとは</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/hashtag">さがす</a>
+                    </li>
+                </ul>
                 <ul class="navbar-nav ms-auto">
                     @if (Auth::user())
                     <li class="nav-item"><a class="btn btn-danger mx-2" href="{{ route('memos.create') }}">投稿</a></li>
