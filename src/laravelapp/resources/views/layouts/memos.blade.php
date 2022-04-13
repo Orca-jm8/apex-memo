@@ -15,11 +15,7 @@
     <!--<script src="{{ mix('js/readmore.js') }}" defer></script>-->
 
     <script type="text/javascript">
-        var pageCount = {
-            {
-                $memos - > lastPage()
-            }
-        };
+        var pageCount = {{ $memos->lastPage() }};
         var nowPage = 1;
         $(function() {
             $('.result_memos').infinitescroll({
