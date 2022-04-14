@@ -44,7 +44,7 @@
                             <span class="badge rounded-pill bg-primary"><a class="text-reset text-decoration-none" href="/hashtag/{{$memo_tag->tag}}">{{ $memo_tag->tag }}</a></span>
                             @endforeach
                         </div>
-                        <div><a href="{{ route('memos.comments.index', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
+                        <div><a href="{{ route('memos.show', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
                         @if (Auth::id() === $user_id)
                         <div class="ud-btn">
                             <div class="me-1">

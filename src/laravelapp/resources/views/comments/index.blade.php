@@ -36,23 +36,25 @@
                     </div>
                 </div>
                 @foreach ($comments as $comment)
-                <div class="card mb-2 mx-1">
+                <div class="card mb-2">
                     <div class="card-body">
                         <h6 class="card-title">{{ $comment->name }}</h6>
                         <p class="card-text">{{$comment->comment}}</p>
                         @if (Auth::check() && Auth::id() === $comment->user_id)
-                        <div class="mb-1">
-                            <form action="{{ route('memos.comments.edit', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}">
-                                @csrf
-                                <input class="btn btn-success" type="submit" value="編集">
-                            </form>
-                        </div>
-                        <div>
-                            <form action="{{ route('memos.comments.destroy', ['memo' => $comment->memo_id, 'comment' => $comment->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input class="btn btn-danger" type="submit" value="削除">
-                            </form>
+                        <div class="ud-btn">
+                            <div class="me-1">
+                                <form action="{{ route('memos.comments.edit', [$comment->memo_id, $comment->id]) }}" method="GET">
+                                    @csrf
+                                    <input class="btn btn-outline-primary btn-sm" type="submit" value="編集">
+                                </form>
+                            </div>
+                            <div>
+                                <form action="{{ route('memos.comments.destroy', [$comment->memo_id, $comment->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input class="btn btn-outline-danger btn-sm" type="submit" value="削除">
+                                </form>
+                            </div>
                         </div>
                         @endif
                     </div>

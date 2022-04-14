@@ -46,7 +46,7 @@ class CommentController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $comment->fill($form)->save();
-        return redirect(route('memo.comment.index', $comment->memo_id));
+        return redirect(route('memos.show', $comment->memo_id));
     }
 
     /**
