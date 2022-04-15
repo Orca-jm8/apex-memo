@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('/');
     }
 
     /**
@@ -29,7 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/');
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/');
     }
 
     /**
@@ -138,6 +138,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        return redirect('/');
     }
 }
