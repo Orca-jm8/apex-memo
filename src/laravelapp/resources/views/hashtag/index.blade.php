@@ -11,7 +11,9 @@
             <h3>タグ</h3>
             <ul class="p-hashtag">
                 @foreach ($tags as $tag)
+                @if ($tag->count_memos !== 0)
                 <li class="p-hashtag_item"><a class="text-reset text-decoration-none" href="/hashtag/{{$tag->tag}}">{{ $tag->tag }} ({{ $tag->count_memos }})</a></li>
+                @endif
                 @endforeach
             </ul>
         </article>

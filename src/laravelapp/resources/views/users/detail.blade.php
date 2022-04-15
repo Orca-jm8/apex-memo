@@ -41,7 +41,11 @@
                             <span class="badge rounded-pill bg-primary"><a class="text-reset text-decoration-none" href="/hashtag/{{$memo_tag->tag}}">{{ $memo_tag->tag }}</a></span>
                             @endforeach
                         </div>
+                        @if ($memo->count_comments === 0)
+                        <div><a href="{{ route('memos.show', $memo->id) }}">コメントを追加</a></div>
+                        @else
                         <div><a href="{{ route('memos.show', $memo->id) }}">{{ $memo->count_comments }}件のコメント</a></div>
+                        @endif
                     </div>
                 </div>
                 @endforeach
