@@ -24,7 +24,6 @@
             </div>
         </aside>
         <article class="col-lg-6">
-            <h1 class="text-center">個人メモ一覧</h1>
             @if (Auth::id() === $user_id)
             <div class="card mb-2">
                 <div class="card-body">
