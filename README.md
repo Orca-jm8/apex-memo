@@ -1,1 +1,1 @@
-# apex-memo
+# APEXプレイヤー向けSNS APEX MEMO
